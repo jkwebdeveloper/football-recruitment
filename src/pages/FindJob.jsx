@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Find_job_Banner from "../components/Find_Job/Find_job_Banner";
 import SideBar from "../components/Find_Job/SideBar";
 import FoundJob from "../components/Find_Job/FoundJob";
 import NewsLatter from "../components/NewsLatter";

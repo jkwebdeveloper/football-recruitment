@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import banner from "../assets/Login_BG.png";
 import Header from "../components/Header";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import useAbortApiCall from "../hooks/useAbortCallApi";
 import toast from "react-hot-toast";
