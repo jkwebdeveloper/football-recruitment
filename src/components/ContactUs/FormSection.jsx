@@ -156,7 +156,7 @@ const FormSection = () => {
         </div>
         <div className="bg-primary_color h-2 rounded-b-xl"></div>
       </div>
-      <div className="md:w-3/5 w-full bg-white shadow-md  rounded-xl p-6 space-y-5 ">
+      <div className="md:w-3/5 w-full bg-white shadow-md h-fit  rounded-xl p-6 space-y-5 ">
         <p className="text-2xl font-semibold">Get in touch</p>
         <Formik
           initialValues={contactValidation.initialState}
