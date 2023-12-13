@@ -1,0 +1,112 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,500;0,600;0,700;0,900;1,200;1,300&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100&family=Urbanist:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;1,300;1,800&display=swap'); */
+
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+  border-radius: 10px;
+}
+body::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: transparent;
+}
+body::-webkit-scrollbar-thumb {
+  background: #004D7F;
+  border-radius: 10px;
+}
+
+.navlink:after {
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  display: block;
+  height: 2px;
+  background: #fff;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.navlink:hover:after {
+  width: 100%;
+  left: 0;
+}
+.navcolor:after {
+  background: none repeat scroll 0 0 transparent;
+  content: "";
+  display: block;
+  height: 2px;
+  background: #004d7f;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.navcolor:hover:after {
+  width: 100%;
+  left: 0;
+}
+.job_details:after,
+.heading:after {
+  background: #004d7f;
+  content: "";
+  display: block;
+  height: 4px;
+  width: 60px;
+  margin-top: 7px;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+/* Upload resume open modal media query */
+/* @media only screen and (min-width: 1024px) and (max-width: 1257px) {
+  .modal {
+    width: 70%;
+  }
+  .choose_btn {
+    width: 34%;
+  }
+} */
+@layer base {
+  html,
+  body {
+    font-family: "Poppins", sans-serif;
+    overflow-x: hidden;
+    /* background-color: #004d7f; */
+  }
+  /* .ReactModal__Html--open,
+  .ReactModal__Body--open {
+    overflow-y: scroll;
+  } */
+}
+@layer base {
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+.jobmodal {
+  @apply overflow-y-auto
+}
+
+.blue_button {
+  @apply focus:outline-none bg-[#004D7F] text-white font-medium rounded-lg active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2;
+}
+.title_blue {
+  @apply text-[#004D7F];
+}
+.primary_color {
+  @apply bg-[#004D7F] text-[#004D7F];
+}
+.input_field {
+  @apply border border-[#C4C4C4] focus:border-primary_color w-full outline-none md:p-2 p-1 rounded-[4px];
+}
+.label_text {
+  @apply text-[#123763] font-medium md:text-base text-sm capitalize;
+}
+.line {
+  @apply bg-[#E0E0E0] w-full h-[1px] border-none;
+}
+
+.error{
+  @apply text-red-500 font-light text-left text-lg
+}
