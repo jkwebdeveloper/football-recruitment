@@ -63,40 +63,44 @@ const SubscribeOur = () => {
         }) => (
           <>
             <Fragment>
-              <div className=" flex justify-around items-center border-2 border-[#8D8FDD] bg-white rounded-lg lg:flex-row md:w-2/5 flex-col mx-auto px-3 py-4 lg:p-5">
-                <div className=" flex gap-5 items-center ">
-                  <GoMail className="text-xl" />
-                  <input
-                    type="text"
-                    placeholder="Your Email Adress"
-                    className="outline-none"
-                    name="email"
-                    value={values.email}
-                    onChange={handleChange("email")}
-                    onBlur={handleBlur("email")}
-                  />
-                </div>
-                <span
-                  className="error"
-                  style={{ color: "red", fontSize: "13px" }}
-                >
-                  {errors.email}
-                </span>
+              <div className="border-2 border-[#8D8FDD] bg-white rounded-lg lg:flex-row md:w-2/5 flex-col mx-auto px-3 py-4 lg:p-5">
+                <div className="xl:flex-row flex-col flex xl:gap-0 gap-3 justify-around items-center ">
+                  <div className=" flex gap-5 items-center ">
+                    <GoMail className="text-xl" />
+                    <input
+                      type="text"
+                      placeholder="Your Email Adress"
+                      className="outline-none"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChange("email")}
+                      onBlur={handleBlur("email")}
+                    />
+                  </div>
 
-                <button
-                  type="submit"
-                  className="blue_button hover:bg-blue_button/80 active:scale-90 transition text-sm font-normal lg:w-[37%] w-full"
-                  onClick={handleSubmit}
-                >
-                  {loading
-                    ? // <Lottie
-                      //   animationData={groovyWalkAnimation}
-                      //   loop={true}
-                      //   className="w-7 justify-center flex mx-auto"
-                      // />
-                      "Loading..."
-                    : "Send Email"}
-                </button>
+                  <button
+                    type="submit"
+                    className="blue_button hover:bg-blue_button/80 active:scale-90 transition text-sm font-normal lg:w-[37%] w-full"
+                    onClick={handleSubmit}
+                  >
+                    {loading
+                      ? // <Lottie
+                        //   animationData={groovyWalkAnimation}
+                        //   loop={true}
+                        //   className="w-7 justify-center flex mx-auto"
+                        // />
+                        "Loading..."
+                      : "Send Email"}
+                  </button>
+                </div>
+                <div className="flex justify-start items-start xl:px-16">
+                  <span
+                    className="error"
+                    style={{ color: "red", fontSize: "13px" }}
+                  >
+                    {errors.email}
+                  </span>
+                </div>
               </div>
             </Fragment>
           </>

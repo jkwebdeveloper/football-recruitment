@@ -39,72 +39,119 @@ const FormSection = () => {
       });
   };
 
-  const handleGetContact = () => {
-    axios
-      .get("https://football-recruitment.onrender.com/api/contact", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((res) => {
-        setContact(res.data.contact);
-        setLoading(false);
-      })
-      .catch((err) => {
-        setLoading(false);
-      });
-  };
-  useEffect(() => {
-    handleGetContact();
-  }, []);
+  // const handleGetContact = () => {
+  //   axios
+  //     .get("https://football-recruitment.onrender.com/api/contact", {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setContact(res.data.contact);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       setLoading(false);
+  //     });
+  // };
+  // useEffect(() => {
+  //   handleGetContact();
+  // }, []);
 
   return (
-    <div className="flex md:flex-row flex-col  justify-center lg:px-8 px-4 gap-5 ">
+    <div className="flex md:flex-row flex-col  justify-center lg:px-8 px-2 gap-5 ">
       <div className="md:w-2/5 w-full bg-[#FFF] border  border-[#E6E6E6] rounded-xl">
         <img
           src={require("../../assets/final_banner_1280.jpg")}
           alt=""
           className="rounded-xl"
         />
-        <div className="p-5 space-y-3">
-          <div>
-            <p className="text-xl font-semibold text-primary_color">
-              Gennaro Capasso
-            </p>
-            <p className="text-primary_color">Managing Director</p>
+        <div className="flex 2xl:divide-x divide-y-2 divide-primary_color 2xl:divide-y-0 2xl:divide-primary_color 2xl:flex-row  flex-col">
+          <div className="xl:p-5 p-3 2xl:p-3  space-y-3">
+            <div>
+              <p className="text-xl font-semibold text-primary_color">
+                Gennaro Capasso
+              </p>
+              <p className="text-primary_color">Managing Director</p>
+            </div>
+            <div className="flex gap-3">
+              <IoLocationSharp className="text-xl text-primary_color" />
+              <p className="font-medium">London United Kingdom</p>
+            </div>
+            <div className="flex gap-3">
+              <FaPhoneAlt className="text-lg text-primary_color" />
+              <ul>
+                <li>
+                  <a href="tel:00447799896414">
+                    <p className="font-medium">00447799896414</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="flex gap-3">
+              <GrMail className="text-xl text-primary_color" />
+              <ul>
+                {/* <li className="font-medium">contact@footballrecruitment.eu</li> */}
+                <li>
+                  <a href="mailto:contact@footballrecruitment.eu">
+                    <p className="font-medium">
+                      gennaro@footballrecruitment.eu
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="flex gap-3">
+              <TfiWorld className="text-lg text-primary_color" />
+              <p className="font-medium">www.footballrecruitment.eu</p>
+            </div>
+            <div className="flex gap-3">
+              <BiLogoLinkedin className="text-lg text-primary_color" />
+              <p className="font-medium">gennarocapasso</p>
+            </div>
           </div>
-          <div className="flex gap-3">
-            <IoLocationSharp className="text-xl text-primary_color" />
-            <p className="font-medium">{contact?.address}</p>
-          </div>
-          <div className="flex gap-3">
-            <FaPhoneAlt className="text-lg text-primary_color" />
-            <ul>
-              <li>
-                <a href="tel:00447799896414">
-                  <p className="font-medium">{contact?.phone}</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="flex gap-3">
-            <GrMail className="text-xl text-primary_color" />
-            <ul>
-              {/* <li className="font-medium">contact@footballrecruitment.eu</li> */}
-              <li>
-                <a href="mailto:contact@footballrecruitment.eu">
-                  <p className="font-medium">{contact?.email}</p>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="flex gap-3">
-            <TfiWorld className="text-lg text-primary_color" />
-            <p className="font-medium">www.footballrecruitment.eu</p>
-          </div>
-          <div className="flex gap-3">
-            <BiLogoLinkedin className="text-lg text-primary_color" />
-            <p className="font-medium">gennarocapasso</p>
+          <div className="2xl:py-4 2xl:px-4 xl:p-5 p-3 2xl:p-0 space-y-3">
+            <div>
+              <p className="text-xl font-semibold text-primary_color">
+                Giuseppe Capasso
+              </p>
+              {/* <p className="text-primary_color">Managing Director</p> */}
+            </div>
+            <div className="flex gap-3">
+              <IoLocationSharp className="text-xl text-primary_color" />
+              <p className="font-medium">London United Kingdom</p>
+            </div>
+            <div className="flex gap-3">
+              <FaPhoneAlt className="text-lg text-primary_color" />
+              <ul>
+                <li>
+                  <a href="tel:00393355787715">
+                    <p className="font-medium">00 39 335 5787715</p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="flex gap-2">
+              <GrMail className="text-xl text-primary_color" />
+              <ul>
+                {/* <li className="font-medium">contact@footballrecruitment.eu</li> */}
+                <li>
+                  <a href="mailto:contact@footballrecruitment.eu">
+                    <p className="font-medium">
+                      Giuseppe@footballrecruitment.eu
+                    </p>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div className="flex gap-3">
+              <TfiWorld className="text-lg text-primary_color" />
+              <p className="font-medium">www.footballrecruitment.eu</p>
+            </div>
+            <div className="flex gap-3">
+              <BiLogoLinkedin className="text-lg text-primary_color" />
+              <p className="font-medium">giuseppecapasso</p>
+            </div>
           </div>
         </div>
         <div className="bg-primary_color h-2 rounded-b-xl"></div>
