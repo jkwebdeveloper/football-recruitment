@@ -10,6 +10,7 @@ import { BiLogoLinkedin } from "react-icons/bi";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
@@ -35,7 +36,9 @@ const FormSection = () => {
       })
       .catch((err) => {
         // console.log(err);
+        toast.error("Message send successfully.", { duration: 3000 });
         setLoading(false);
+        
       });
   };
 
@@ -76,7 +79,7 @@ const FormSection = () => {
             </div>
             <div className="flex gap-3">
               <IoLocationSharp className="text-xl text-primary_color" />
-              <p className="font-medium">London United Kingdom</p>
+              <p className="font-medium">London - United Kingdom</p>
             </div>
             <div className="flex gap-3">
               <FaPhoneAlt className="text-lg text-primary_color" />
@@ -119,7 +122,7 @@ const FormSection = () => {
             </div>
             <div className="flex gap-3">
               <IoLocationSharp className="text-xl text-primary_color" />
-              <p className="font-medium">London United Kingdom</p>
+              <p className="font-medium">Rome - Italy </p>
             </div>
             <div className="flex gap-3">
               <FaPhoneAlt className="text-lg text-primary_color" />
@@ -138,7 +141,7 @@ const FormSection = () => {
                 <li>
                   <a href="mailto:contact@footballrecruitment.eu">
                     <p className="font-medium">
-                      Giuseppe@footballrecruitment.eu
+                      giuseppe@footballrecruitment.eu
                     </p>
                   </a>
                 </li>

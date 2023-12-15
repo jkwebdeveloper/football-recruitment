@@ -22,7 +22,7 @@ const Footer = () => {
       pathname.includes("contact") ||
       pathname.includes("faq") ||
       pathname.includes("terms-and-conditions") ||
-      pathname.includes("find-job") ||
+      pathname.includes("current-vacancies") ||
       pathname.includes("job-detail") ||
       pathname.includes("my-account") ||
       pathname.includes("services")

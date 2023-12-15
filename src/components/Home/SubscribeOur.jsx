@@ -6,6 +6,7 @@ import { newsLatterValidation } from "../../utils/Validations";
 import { BiErrorCircle } from "react-icons/bi";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../assets/loadingBar.json";
+import { Link } from "react-router-dom";
 
 const SubscribeOur = () => {
   const [loading, setLoading] = useState(false);
@@ -32,85 +33,33 @@ const SubscribeOur = () => {
   };
 
   return (
-    <div className="bg-[#004D7F] lg:py-16 py-5 p-5 relative text-center w-full text-black lg:space-y-5 space-y-2">
+    <div className="bg-[#004D7F] lg:py-16 py-5 p-5 relative text-center  text-black lg:space-y-5 space-y-2">
       <img
         src={require("../../assets/Group 239788.png")}
         alt=""
         className="lg:block hidden absolute w-48 h-48 dropShadow drop-shadow-2xl -bottom-16 overflow-hidden -left-12"
       />
-      <p className="lg:text-3xl text-lg text-white font-bold">
-        Subscribe our newsletter
-      </p>
-      <p className="text-sm text-white font-normal">
-        Subscribe for get update info
-      </p>
-
-      <Formik
-        initialValues={newsLatterValidation.initialState}
-        validationSchema={newsLatterValidation.schema}
-        onSubmit={(values, action) => {
-          handlePost(values);
-          action.resetForm();
-        }}
-      >
-        {({
-          values,
-          errors,
-          touched,
-          handleBlur,
-          handleChange,
-          handleSubmit,
-        }) => (
-          <>
-            <Fragment>
-              <div className="border-2 border-[#8D8FDD] bg-white rounded-lg lg:flex-row md:w-2/5 flex-col mx-auto px-3 py-4 lg:p-5">
-                <div className="xl:flex-row flex-col flex xl:gap-0 gap-3 justify-around items-center ">
-                  <div className=" flex gap-5 items-center ">
-                    <GoMail className="text-xl" />
-                    <input
-                      type="text"
-                      placeholder="Your Email Adress"
-                      className="outline-none"
-                      name="email"
-                      value={values.email}
-                      onChange={handleChange("email")}
-                      onBlur={handleBlur("email")}
-                    />
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="blue_button hover:bg-blue_button/80 active:scale-90 transition text-sm font-normal lg:w-[37%] w-full"
-                    onClick={handleSubmit}
-                  >
-                    {loading
-                      ? // <Lottie
-                        //   animationData={groovyWalkAnimation}
-                        //   loop={true}
-                        //   className="w-7 justify-center flex mx-auto"
-                        // />
-                        "Loading..."
-                      : "Send Email"}
-                  </button>
-                </div>
-                <div className="flex justify-start items-start xl:px-16">
-                  <span
-                    className="error"
-                    style={{ color: "red", fontSize: "13px" }}
-                  >
-                    {errors.email}
-                  </span>
-                </div>
-              </div>
-            </Fragment>
-          </>
-        )}
-      </Formik>
-
+      <div className="space-y-5">
+        <div>
+          <p className="lg:text-3xl job_details text-lg text-white font-bold">
+            Upload Your Resume
+          </p>
+        </div>
+        <div>
+          <Link to="/sign-up">
+            <button
+              type="submit"
+              className="focus:outline-none bg-white text-primary_color font-medium rounded-lg active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
+            >
+              Submit Your CV
+            </button>
+          </Link>
+        </div>
+      </div>
       <img
         src={require("../../assets/shape.png")}
         alt=""
-        className="lg:block hidden absolute w-28  top-7 overflow-hidden -right-0"
+        className="lg:block hidden absolute w-28  top-0 overflow-hidden -right-0"
       />
     </div>
   );

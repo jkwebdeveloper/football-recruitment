@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
+import { handleFindJobByKeywords } from "../../redux/JobSlice";
+import { useDispatch } from "react-redux";
 
-const categories = [
+const categoriesList = [
   {
     id: 1,
     name: "Type of Employment",
@@ -14,31 +16,16 @@ const categories = [
   {
     id: 2,
     name: "Categories",
-    subcategories: [
-      { id: 1, name: "All" },
-      { id: 2, name: "Analyst" },
-      { id: 3, name: "Academy" },
-      { id: 4, name: "Leadership & Management" },
-      { id: 5, name: "Technology" },
-      { id: 6, name: "Coaching" },
-      { id: 7, name: "Data Science" },
-      { id: 8, name: "Digital" },
-    ],
+    subcategories: [],
   },
   {
     id: 3,
     name: "Location",
-    subcategories: [
-      { id: 1, name: "All" },
-      { id: 2, name: "London" },
-      { id: 3, name: "Canada" },
-      { id: 4, name: "New York" },
-      { id: 5, name: "France" },
-    ],
+    subcategories: [],
   },
   {
     id: 4,
-    name: "Salary Range",
+    name: "SalaryRange",
     subcategories: [
       { id: 1, name: "$700 - $1000" },
       { id: 2, name: "$100 - $1500" },
@@ -60,8 +47,73 @@ const categories = [
 const SideBar = () => {
   const [isOpen, setIsOpen] = useState({});
   const [selectedSubcategories, setSelectedSubcategories] = useState({});
+  const [apiData, setApiData] = useState(null);
+  const [categories, setCategories] = useState(categoriesList);
+  const [loading, setLoading] = useState(false);
+  const [categoryListData, setCategoryListData] = useState("");
 
-  const handleSubcategoryChange = (categoryName, subcategoryName) => {
+  const dispatch = useDispatch();
+
+  // Fetch data from the API on component mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch(
+          "https://football-recruitment.onrender.com/api/category"
+        );
+        const data = await response.json();
+        setApiData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // Update "Categories" subcategories
+    if (apiData && apiData.success) {
+      const categoriesIndex = categories.findIndex(
+        (category) => category.name === "Categories"
+      );
+
+      if (categoriesIndex !== -1) {
+        const newCategories = [...categories];
+        newCategories[categoriesIndex].subcategories = [
+          { id: 1, name: "All" },
+          ...apiData.categoryList.map((category) => ({
+            id: category._id,
+            name: category.name,
+          })),
+        ];
+
+        setCategories(newCategories);
+      }
+    }
+
+    // Update "Location" subcategories
+    if (apiData && apiData.success) {
+      const locationIndex = categories.findIndex(
+        (category) => category.name === "Location"
+      );
+
+      if (locationIndex !== -1) {
+        const newCategories = [...categories];
+        newCategories[locationIndex].subcategories = [
+          { id: 1, name: "All" },
+          ...apiData.countryList.map((country) => ({
+            id: country,
+            name: country,
+          })),
+        ];
+
+        setCategories(newCategories);
+      }
+    }
+  }, [apiData]);
+
+  const handleSubcategoryChange = (categoryName, subcategoryName, categoryId) => {
     setSelectedSubcategories((prevState) => {
       const updatedState = {
         ...prevState,
@@ -96,7 +148,8 @@ const SideBar = () => {
 
         updatedState[categoryName].All = areAllSubcategoriesSelected;
       }
-      // console.log(updatedState, "updated state");
+      setCategoryListData(updatedState);
+      console.log(updatedState, "updated state");
       return updatedState;
     });
   };
@@ -106,6 +159,24 @@ const SideBar = () => {
       ...prevState,
       [categoryName]: !prevState[categoryName],
     }));
+  };
+
+  const hanldeFindJob = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const response = dispatch(handleFindJobByKeywords({
+      // minSalary: categoryListData?.SalaryRange?.
+      // categoryId: categoryListData?
+    }));
+    if (response) {
+      response.then((res) => {
+        if (res?.payload?.success === true) {
+          setLoading(false);
+          // navigate("/current-vacancies");
+        }
+      });
+    }
+    setLoading(false);
   };
 
   return (
@@ -155,7 +226,8 @@ const SideBar = () => {
                             onChange={() =>
                               handleSubcategoryChange(
                                 category.name,
-                                subcategory.name
+                                subcategory.name,
+                                subcategory.id
                               )
                             }
                           />

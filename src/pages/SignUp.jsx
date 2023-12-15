@@ -86,7 +86,7 @@ const SignUp = () => {
         response.then((res) => {
           if (res?.payload?.success === true) {
             toast.success("sign up successfully");
-            navigate("/");
+            navigate("/my-account");
           }
         });
       }
