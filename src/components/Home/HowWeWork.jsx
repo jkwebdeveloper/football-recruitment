@@ -16,7 +16,7 @@ const HowWeWork = () => {
         <h1 className="lg:text-[40px] text-lg font-bold">
           How <span className="title_blue">we work</span>{" "}
         </h1>
-        <p className="text-[#656567] xl:text-base text-sm">
+        <p className="text-[#656567] text-justify xl:text-base text-sm">
           In the realm of recruiting non-sport personnel for roles within the
           sports industry, our methodology is tailored to identify top-tier
           candidates who possess the unique skill sets and cultural fit required

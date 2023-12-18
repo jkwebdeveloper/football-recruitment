@@ -17,20 +17,20 @@ const WhoWeAre = () => {
         <h1 className="lg:text-[40px] text-lg font-bold">
           Who <span className="title_blue">we are</span>{" "}
         </h1>
-        <p className="text-[#656567] md:text-left text-justify  xl:text-base text-sm">
+        <p className="text-[#656567]  text-justify  xl:text-base text-sm">
           <span className="font-semibold">Football Recruitment:</span> Elevating
           Excellence in the Football Industry Workforce. Football Recruitment
           emerges as a pioneering global entity, exclusively dedicated to the
           meticulous recruitment of top-tier personnel within the realm of
           football.
         </p>
-        <p className="text-[#656567] md:text-left text-justify xl:text-base text-sm">
+        <p className="text-[#656567]  text-justify xl:text-base text-sm">
           Our distinguished focus extends to the executive echelons,
           encompassing Sporting Directors, CEOs, CMOs, CFOs, CTOs, and a
           spectrum of different operational roles, fortifying the foundation of
           football organizations worldwide.
         </p>
-        <p className="text-[#656567] md:text-left text-justify xl:text-base text-sm">
+        <p className="text-[#656567]  text-justify xl:text-base text-sm">
           Distinguished by an expansive international reach, Football
           Recruitment boasts an extensive candidate network, spanning across
           three continents, and maintains strategic offices in prominent hubs

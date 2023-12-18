@@ -10,7 +10,7 @@ const WhatWeServeModal = ({ visible, onClose, readmore }) => {
         <AiOutlineClose onClick={onClose} className="cursor-pointer absolute right-5" />
         <div className="p-2 space-y-4">
           <p className="text-center font-bold text-xl">{readmore?.title}</p>
-          <p>{readmore?.des}</p>
+          <p className="text-justify">{readmore?.des}</p>
         </div>
       </div>
     </div>

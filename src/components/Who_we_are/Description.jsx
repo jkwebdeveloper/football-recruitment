@@ -45,7 +45,7 @@ const Description = () => {
           Football <span className="title_blue">Recruitment</span>{" "}
         </h1>
         <p
-          className="text-[#656567] xl:text-left text-justify xl:text-base text-sm"
+          className="text-[#656567] text-justify xl:text-base text-sm"
           dangerouslySetInnerHTML={{ __html: description.content }}
         />
         {/* "<span className="font-semibold">Football Recruitment:</span>{" "}

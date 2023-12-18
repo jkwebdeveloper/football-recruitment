@@ -5,6 +5,7 @@ import { IoGrid, IoGridOutline, IoLocationOutline } from "react-icons/io5";
 import { MdOutlineViewAgenda, MdViewAgenda } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 
 const FoundJob = () => {
   const [view, setView] = useState("grid");
@@ -12,6 +13,16 @@ const FoundJob = () => {
   const { jobs, findJobLoading } = useSelector((s) => s.root.job);
 
   const dispatch = useDispatch();
+  // const  {items} = props
+  // const [itemOffset, setItemOffset] = useState(0);
+  // const endOffset = itemOffset + itemsPerPage;
+  // const currentItems = items.slice(itemOffset, endOffset);
+  // const pageCount = Math.ceil(items.length / itemsPerPage);
+
+  // const handlePageClick = (event) => {
+  //   const newOffset = (event.selected * itemsPerPage) % items.length;
+  //   setItemOffset(newOffset, items, currentItems, pageCount);
+  // };
 
   return (
     <div className="md:w-4/5 w-full mx-auto space-y-5">
@@ -186,6 +197,23 @@ const FoundJob = () => {
           )}
         </div>
       )}
+
+      {/* <div className="flex gap-3 mr-auto">
+        <ReactPaginate
+          breakLabel="..."
+          nextLabel="<"
+          // onPageChange={handlePageClick}
+          pageRangeDisplayed={5}
+          // pageCount={pageCount}
+          previousLabel=">"
+          renderOnZeroPageCount={null}
+          containerClassName="pagination"
+          previousLinkClassName="page-num"
+          pageLinkClassName="page-num"
+          activeLinkClassName="active"
+          nextLinkClassName="page-num"
+        />
+      </div> */}
     </div>
   );
 };

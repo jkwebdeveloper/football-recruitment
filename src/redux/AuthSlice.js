@@ -22,12 +22,12 @@ export const handleLoginUser = createAsyncThunk(
           for (const [key, value] of Object.entries(
             err?.response?.data?.errors
           )) {
-            toast.error(err?.response?.data?.errors[key]);
+            // toast.error(err?.response?.data?.errors[key]);
           }
         } else {
           toast.error(err?.response?.data?.message);
         }
-        toast.error(err?.response?.data?.message);
+        // toast.error(err?.response?.data?.message);
         return rejectWithValue(err?.response?.data);
       });
     return response;

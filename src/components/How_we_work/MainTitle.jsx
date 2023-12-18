@@ -38,7 +38,7 @@ const MainTitle = () => {
   // console.log(openFaqs)
   return (
     <div className="lg:px-10 px-4 w-full text-black space-y-14">
-      <p className="lg:w-full w-11/12 md:text-center text-justify text-sm lg:text-[16px] mx-auto">
+      <p className="lg:w-full w-11/12 text-justify text-sm lg:text-[16px] mx-auto">
         In the realm of recruiting non-sport personnel for roles within the
         football industry, our methodology is tailored to identify top-tier
         candidates who possess the unique skill sets and cultural fit required
@@ -98,7 +98,7 @@ const MainTitle = () => {
                 // </p>
                 <div className="transition duration-500 space-y-4">
                   <hr className="w-full" />
-                  <div className="text-justify md:text-center  text-sm">
+                  <div className="text-justify text-sm">
                     {item.answer}
                   </div>
                 </div>
