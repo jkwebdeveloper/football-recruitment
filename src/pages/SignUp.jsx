@@ -49,7 +49,7 @@ const SignUp = () => {
       .min(6)
       .trim()
       .required("Password is must be required"),
-    country: yup.string().required("country is required"),
+    // country: yup.string().required("country is required"),
     city: yup.string().required("City is required !"),
     state: yup.string().required("State field is required !"),
     phone: yup.string().required("Phone is required !"),
@@ -60,7 +60,7 @@ const SignUp = () => {
       name: "",
       email: "",
       password: "",
-      country: "",
+      // country: "",
       city: "",
       state: "",
       phone: "",
@@ -81,7 +81,7 @@ const SignUp = () => {
           phone,
           city,
           state,
-          country,
+          // country,
           signal: AbortControllerRef,
         })
       );
@@ -164,7 +164,7 @@ const SignUp = () => {
                     />
                     <ErrorMessage name="email" component={TextError} />
                   </div>
-                  <div className="text-left">
+                  {/* <div className="text-left">
                     <label htmlFor="email" className="label_text">
                       Country
                     </label>
@@ -190,7 +190,7 @@ const SignUp = () => {
                     </select>
 
                     <ErrorMessage name="country" component={TextError} />
-                  </div>
+                  </div> */}
                   <div className="text-left">
                     <label htmlFor="phone" className="label_text">
                       Phone

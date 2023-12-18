@@ -113,7 +113,11 @@ const SideBar = () => {
     }
   }, [apiData]);
 
-  const handleSubcategoryChange = (categoryName, subcategoryName, categoryId) => {
+  const handleSubcategoryChange = (
+    categoryName,
+    subcategoryName,
+    categoryId
+  ) => {
     setSelectedSubcategories((prevState) => {
       const updatedState = {
         ...prevState,
@@ -153,7 +157,7 @@ const SideBar = () => {
       return updatedState;
     });
   };
-
+  console.log(categoriesList?.name?.subcategories);
   const handleToggle = (categoryName) => {
     setIsOpen((prevState) => ({
       ...prevState,
@@ -162,12 +166,14 @@ const SideBar = () => {
   };
 
   const hanldeFindJob = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     setLoading(true);
-    const response = dispatch(handleFindJobByKeywords({
-      // minSalary: categoryListData?.SalaryRange?.
-      // categoryId: categoryListData?
-    }));
+    const response = dispatch(
+      handleFindJobByKeywords({
+        jobType: "Full Time",
+        categoryId: "656479f6cd928452f66dd672",
+      })
+    );
     if (response) {
       response.then((res) => {
         if (res?.payload?.success === true) {
@@ -178,7 +184,9 @@ const SideBar = () => {
     }
     setLoading(false);
   };
-
+  useEffect(() => {
+    hanldeFindJob();
+  },[]);
   return (
     <div className="md:w-[30%] lg:w-[20%] w-full mx-auto space-y-5 ">
       {categories.map((category) => {

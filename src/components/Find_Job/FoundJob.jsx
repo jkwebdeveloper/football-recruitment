@@ -29,9 +29,7 @@ const FoundJob = () => {
           </div>
           <div className="flex items-center lg:gap-7 gap-2">
             {view === "grid" ? (
-              <IoGrid
-                className="text-xl text-primary_color cursor-pointer"
-              />
+              <IoGrid className="text-xl text-primary_color cursor-pointer" />
             ) : (
               <IoGridOutline
                 className="text-xl text-primary_color cursor-pointer"
@@ -39,9 +37,7 @@ const FoundJob = () => {
               />
             )}
             {view === "list" ? (
-              <MdViewAgenda
-                className="text-2xl text-primary_color  cursor-pointer"
-              />
+              <MdViewAgenda className="text-2xl text-primary_color  cursor-pointer" />
             ) : (
               <MdOutlineViewAgenda
                 className="text-2xl text-primary_color  cursor-pointer"
@@ -87,9 +83,15 @@ const FoundJob = () => {
                           </p>
                         </div>
                       </div>
-                      <p className="bg-[#A8BCFF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
-                        {job?.job_type}
-                      </p>
+                      {job.job_type === "Full time" ? (
+                        <p className="bg-[#A8BCFF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
+                          {job?.job_type}
+                        </p>
+                      ) : (
+                        <p className="bg-[#A1F8FF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
+                          {job?.job_type}
+                        </p>
+                      )}
                     </div>
                     <p className="xl:text-xl text-base font-medium text-[#333] w-4/5">
                       {job.title}
@@ -164,9 +166,15 @@ const FoundJob = () => {
                     <p className="text-sm">
                       {job?.city}, {job?.country}
                     </p>
-                    <p className="bg-[#A8BCFF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
-                      {job?.job_type}
-                    </p>
+                    {job.job_type === "Full time" ? (
+                      <p className="bg-[#A8BCFF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
+                        {job?.job_type}
+                      </p>
+                    ) : (
+                      <p className="bg-[#A1F8FF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
+                        {job?.job_type}
+                      </p>
+                    )}
                   </div>
                 </div>
               );

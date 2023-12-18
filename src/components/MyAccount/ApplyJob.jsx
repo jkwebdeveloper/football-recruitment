@@ -18,7 +18,11 @@ const ApplyJob = () => {
         </div>
       ) : (
         appliedJobs?.map((job) => (
-          <Link to={`/job-detail/${job?.job_id?._id}`} key={job?._id} className="w-full py-2">
+          <Link
+            to={`/job-detail/${job?.job_id?._id}`}
+            key={job?._id}
+            className="w-full py-2"
+          >
             <div className="border border-[#D6DDEB] lg:space-y-3 space-y-4 p-2 my-2 lg:p-5">
               <div className="flex items-center justify-between">
                 <div className="flex xl:gap-4 gap-2 items-center justify-between">
@@ -54,9 +58,18 @@ const ApplyJob = () => {
                 <p className="text-sm">
                   {job?.job_id?.city}, {job?.job_id?.country}
                 </p>
-                <p className="bg-[#A8BCFF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
+                {/* <p className="bg-[#A8BCFF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
                   {job?.job_id?.job_type}
-                </p>
+                </p> */}
+                {job?.job_id?.job_type === "Full time" ? (
+                  <p className="bg-[#A8BCFF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
+                    {job?.job_id?.job_type}
+                  </p>
+                ) : (
+                  <p className="bg-[#A1F8FF] hover:bg-blue_button/80 rounded-3xl lg:h-9 h-7 lg:leading-9 leading-7 focus:outline-none text-black font-normal text-xs px-4 whitespace-nowrap">
+                    {job?.job_id?.job_type}
+                  </p>
+                )}
               </div>
             </div>
           </Link>

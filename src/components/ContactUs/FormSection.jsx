@@ -11,7 +11,9 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-import ReCAPTCHA from "react-google-recaptcha";
+import {ReCAPTCHA} from "react-google-recaptcha";
+// import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
+
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
@@ -303,9 +305,10 @@ const FormSection = () => {
               </div>
               <ReCAPTCHA
                 sitekey="6LclXn4lAAAAABGW_Q7lBGpguGQ6i8xHsKpK49IA"
-                onChange={(value) => setFieldValue("captcha", value)}
+                onChange={(value) => console.log("captcha", value)}
+            
                 ref={captchaRef}
-              />{" "}
+              />
               <p className="error" style={{ color: "red", fontSize: "13px" }}>
                 {errors.captcha}
               </p>
