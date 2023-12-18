@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
 import { FaPhoneAlt } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
@@ -11,10 +11,13 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
   const [contact, setContact] = useState({});
+
+  const captchaRef = useRef(null);
 
   const handlePost = (values) => {
     setLoading(true);
@@ -38,7 +41,6 @@ const FormSection = () => {
         // console.log(err);
         toast.error("Message send successfully.", { duration: 3000 });
         setLoading(false);
-        
       });
   };
 
@@ -118,7 +120,7 @@ const FormSection = () => {
               <p className="text-xl font-semibold text-primary_color">
                 Giuseppe Capasso
               </p>
-              {/* <p className="text-primary_color">Managing Director</p> */}
+              <p className="xl:h-5 xl:block hidden"></p>
             </div>
             <div className="flex gap-3">
               <IoLocationSharp className="text-xl text-primary_color" />
@@ -176,6 +178,7 @@ const FormSection = () => {
             handleBlur,
             handleChange,
             handleSubmit,
+            setFieldValue,
           }) => (
             <Fragment>
               <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
@@ -298,6 +301,14 @@ const FormSection = () => {
                   />
                 ) : null} */}
               </div>
+              <ReCAPTCHA
+                sitekey="6LclXn4lAAAAABGW_Q7lBGpguGQ6i8xHsKpK49IA"
+                onChange={(value) => setFieldValue("captcha", value)}
+                ref={captchaRef}
+              />{" "}
+              <p className="error" style={{ color: "red", fontSize: "13px" }}>
+                {errors.captcha}
+              </p>
               <button
                 type="submit"
                 className="blue_button px-9"

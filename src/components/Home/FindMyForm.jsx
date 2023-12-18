@@ -73,7 +73,7 @@ function FindMyForm({ from }) {
 
   const hanldeFindJob = (e) => {
     e.preventDefault();
-    if (usersSearch.job === "" || usersSearch.location === "") {
+    if (usersSearch?.jobTitle === "" || usersSearch?.location === "") {
       toast.remove();
       return toast.error("Please fill information");
     }

@@ -147,18 +147,18 @@ const Footer = () => {
             {/* <div className=" text-white text-2xl  cursor-pointer ">
               <FaPinterest />
             </div> */}
-            <div className=" text-white text-2xl  cursor-pointer ">
+            {/* <div className=" text-white text-2xl  cursor-pointer ">
               <FaTwitter />
-            </div>
+            </div> */}
             {/* <div className=" text-white text-2xl  cursor-pointer ">
               <FaFacebook />
             </div> */}
             {/* <div className=" text-white text-2xl  cursor-pointer ">
               <FaYoutube />
             </div> */}
-            <div className=" text-white text-2xl  cursor-pointer ">
+            {/* <div className=" text-white text-2xl  cursor-pointer ">
               <FaInstagram />
-            </div>
+            </div> */}
             <div className=" text-white text-2xl  cursor-pointer ">
               <FaLinkedinIn />
             </div>

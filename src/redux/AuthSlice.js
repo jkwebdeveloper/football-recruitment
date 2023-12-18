@@ -18,6 +18,15 @@ export const handleLoginUser = createAsyncThunk(
         return res.data;
       })
       .catch((err) => {
+        if (err?.response?.data?.errors) {
+          for (const [key, value] of Object.entries(
+            err?.response?.data?.errors
+          )) {
+            toast.error(err?.response?.data?.errors[key]);
+          }
+        } else {
+          toast.error(err?.response?.data?.message);
+        }
         toast.error(err?.response?.data?.message);
         return rejectWithValue(err?.response?.data);
       });
@@ -50,7 +59,15 @@ export const handleRegisterUser = createAsyncThunk(
         return res.data;
       })
       .catch((err) => {
-        toast.error(err?.response?.data?.message);
+        if (err?.response?.data?.errors) {
+          for (const [key, value] of Object.entries(
+            err?.response?.data?.errors
+          )) {
+            toast.error(err?.response?.data?.errors[key]);
+          }
+        } else {
+          toast.error(err?.response?.data?.message);
+        }
         return rejectWithValue(err?.response?.data);
       });
     return response;

@@ -13,7 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { handleRegisterUser } from "../redux/AuthSlice";
 import toast from "react-hot-toast";
 import useAbortApiCall from "../hooks/useAbortCallApi";
-import { isPossiblePhoneNumber, isValidPhoneNumber } from "react-phone-number-input";
+import {
+  isPossiblePhoneNumber,
+  isValidPhoneNumber,
+} from "react-phone-number-input";
 import { Helmet } from "react-helmet";
 
 const SignUp = () => {
@@ -43,13 +46,13 @@ const SignUp = () => {
     email: yup.string().email().required("Email field is required !"),
     password: yup
       .string()
-      .min(4)
+      .min(6)
       .trim()
       .required("Password is must be required"),
     country: yup.string().required("country is required"),
     city: yup.string().required("City is required !"),
     state: yup.string().required("State field is required !"),
-    phone: yup.string().required("Phone is required !")
+    phone: yup.string().required("Phone is required !"),
   });
 
   const formik = useFormik({
@@ -95,7 +98,6 @@ const SignUp = () => {
   // console.log("formik", formik);
   const { getFieldProps, handleSubmit, setFieldValue, values, errors } = formik;
 
-
   // for country , state , city selection
   useEffect(() => {
     const allCountries = Country.getAllCountries();
@@ -111,7 +113,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Helmet title="SignUp | Football-Recruitment"/>
+      <Helmet title="SignUp | Football-Recruitment" />
       <div
         style={{
           backgroundImage: `url(${banner})`,

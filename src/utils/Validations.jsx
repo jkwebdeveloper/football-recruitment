@@ -62,6 +62,7 @@ export const contactValidation = {
     email: yup.string().email().required("Email field is required !"),
     phone: yup.string().trim().required("Phone number is must be required"),
     message: yup.string().trim().required("Name is must be required"),
+    captcha: yup.string().required("Check the captcha."),
   }),
 };
 
