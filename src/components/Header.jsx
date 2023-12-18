@@ -95,7 +95,7 @@ const Header = () => {
             </Link>
             <Link to="/services">
               <li
-                className={`cursor-pointer text-[16px] ${
+                className={`cursor-pointer  text-[16px] ${
                   sticky ? "navcolor" : "navlink"
                 }`}
                 onClick={() => {
@@ -194,7 +194,7 @@ const Header = () => {
           <Link to="/">
             <li
               className={`cursor-pointer text-[16px] ${
-                sticky ? "navcolor" : "navlink"
+                sticky ? "navcolor text-primary_color" : "navlink"
               } `}
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -206,7 +206,7 @@ const Header = () => {
           <Link to="/who-we-are">
             <li
               className={`cursor-pointer text-[16px] ${
-                sticky ? "navcolor" : "navlink"
+                sticky ? "navcolor text-primary_color" : "navlink"
               } `}
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -218,7 +218,7 @@ const Header = () => {
           <Link to="/how-we-work">
             <li
               className={`cursor-pointer text-[16px] ${
-                sticky ? "navcolor" : "navlink"
+                sticky ? "navcolor text-primary_color" : "navlink"
               } `}
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -230,7 +230,7 @@ const Header = () => {
           <Link to="/current-vacancies">
             <li
               className={`cursor-pointer text-[16px] ${
-                sticky ? "navcolor" : "navlink"
+                sticky ? "navcolor text-primary_color" : "navlink"
               }`}
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -242,7 +242,7 @@ const Header = () => {
           <Link to="/services">
             <li
               className={`cursor-pointer text-[16px] ${
-                sticky ? "navcolor" : "navlink"
+                sticky ? "navcolor text-primary_color" : "navlink"
               }`}
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -254,7 +254,7 @@ const Header = () => {
           <Link to="/contact">
             <li
               className={`cursor-pointer text-[16px] ${
-                sticky ? "navcolor" : "navlink"
+                sticky ? "navcolor text-primary_color" : "navlink"
               } `}
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -268,7 +268,7 @@ const Header = () => {
           <Link to="/my-account">
             <li
               className={`cursor-pointer text-[16px] capitalize list-none ${
-                sticky ? "navcolor" : "navlink"
+                sticky ? "navcolor text-primary_color" : "navlink"
               } `}
               onClick={() => {
                 window.scrollTo({ top: 0, behavior: "smooth" });
@@ -285,7 +285,7 @@ const Header = () => {
                 type="button"
                 className={`focus:outline-none text-[16px]  rounded-lg text-sm px-4 py-1.5 ${
                   sticky
-                    ? "hover:bg-primary_color hover:text-white"
+                    ? "hover:bg-primary_color text-primary_color hover:text-white"
                     : "hover:bg-white hover:text-black"
                 } `}
                 onClick={() => {
@@ -300,7 +300,7 @@ const Header = () => {
                 type="button"
                 className={`focus:outline-none text-[16px]  rounded-lg text-sm px-4 py-1.5 ${
                   sticky
-                    ? "hover:bg-primary_color hover:text-white"
+                    ? "hover:bg-primary_color text-primary_color hover:text-white"
                     : "hover:bg-white hover:text-black"
                 } `}
                 onClick={() => {
