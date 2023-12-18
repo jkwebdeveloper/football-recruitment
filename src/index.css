@@ -53,6 +53,15 @@ body::-webkit-scrollbar-thumb {
   width: 60px;
   margin-top: 7px;
 }
+.footer:after,
+.heading:after {
+  background: white;
+  content: "";
+  display: block;
+  height: 2px;
+  width: 30px;
+  margin-top: 7px;
+}
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }

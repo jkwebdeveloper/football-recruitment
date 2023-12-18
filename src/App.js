@@ -10,7 +10,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import SignUp from "./pages/SignUp";
 import SuccessFull from "./pages/SuccessFull";
-import FAQ from "./pages/FAQ";
+// import FAQ from "./pages/FAQ";
 import TermsAndCondition from "./pages/TermsAndCondition";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import FindJob from "./pages/FindJob";
@@ -37,7 +37,7 @@ function App() {
         {/* SignUp Form */}
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/success" element={<SuccessFull />} />
-        <Route path="/faq" element={<FAQ />} />
+        {/* <Route path="/faq" element={<FAQ />} /> */}
         <Route path="/terms-and-conditions" element={<TermsAndCondition />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/current-vacancies" element={<FindJob />} />

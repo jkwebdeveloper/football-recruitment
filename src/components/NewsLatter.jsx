@@ -37,7 +37,12 @@ const NewsLatter = () => {
           </h1>
         </div>
         <div>
-          <Link to="/sign-up">
+          <Link
+            to="/sign-up"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             <button
               type="button"
               className="blue_button hover:bg-blue_button/80 active:scale-90 transition text-sm font-normal"

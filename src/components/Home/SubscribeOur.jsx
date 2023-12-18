@@ -46,7 +46,12 @@ const SubscribeOur = () => {
           </p>
         </div>
         <div>
-          <Link to="/sign-up">
+          <Link
+            to="/sign-up"
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
             <button
               type="submit"
               className="focus:outline-none bg-white text-primary_color font-medium rounded-lg active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
