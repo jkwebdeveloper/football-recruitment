@@ -77,14 +77,13 @@ const FoundJob = () => {
                   <div className="border border-[#D6DDEB] xl:space-y-4 cursor-pointer h-60 space-y-4 p-3 xl:p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex xl:gap-4 gap-2 items-center justify-between">
-                        <div className="bg-[#004D7F] text-white uppercase text-sm xl:w-11 xl:h-11 h-7 w-7 rounded-full flex justify-center items-center">
-                          {job?.title
-                            ?.split(" ")
-                            .map(function (item) {
-                              return item[0];
-                            })
-                            .join("")}
-                        </div>
+                        <img
+                          src={"https://football-recruitment.onrender.com".concat(
+                            job?.recruiter?.image
+                          )}
+                          alt=""
+                          className="lg:w-12 lg:h-12 h-8 w-8 rounded-full"
+                        />
                         <div className="block">
                           <p className="xl:text-base text-sm font-semibold">
                             {job.recruiter.recruiterName}
@@ -137,14 +136,13 @@ const FoundJob = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex xl:gap-4 gap-2 items-center justify-between">
-                      <div className="bg-[#004D7F] uppercase text-white text-center text-sm lg:w-11 lg:h-11 h-7 w-7 rounded-full flex justify-center items-center">
-                        {job?.title
-                          ?.split(" ")
-                          .map(function (item) {
-                            return item[0];
-                          })
-                          .join("")}
-                      </div>
+                      <img
+                        src={"https://football-recruitment.onrender.com".concat(
+                          job?.recruiter?.image
+                        )}
+                        alt=""
+                        className="lg:w-12 lg:h-12 h-8 w-8 rounded-full"
+                      />
                       <div className="block">
                         <p className="lg:text-base text-sm font-semibold">
                           {job?.recruiter?.recruiterName}
