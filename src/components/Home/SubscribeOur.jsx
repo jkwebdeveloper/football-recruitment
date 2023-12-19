@@ -7,9 +7,12 @@ import { BiErrorCircle } from "react-icons/bi";
 import Lottie from "lottie-react";
 import groovyWalkAnimation from "../../assets/loadingBar.json";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const SubscribeOur = () => {
   const [loading, setLoading] = useState(false);
+
+  const { user } = useSelector((s) => s.root.auth);
 
   const handlePost = (values) => {
     setLoading(true);
@@ -46,19 +49,35 @@ const SubscribeOur = () => {
           </p>
         </div>
         <div>
-          <Link
-            to="/sign-up"
-            onClick={() => {
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            }}
-          >
-            <button
-              type="submit"
-              className="focus:outline-none bg-white text-primary_color font-medium rounded-lg active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
+          {user !== null ? (
+            <Link
+              to="/my-account"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
             >
-              Submit Your CV
-            </button>
-          </Link>
+              <button
+                type="submit"
+                className="focus:outline-none bg-white text-primary_color font-medium rounded-lg active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
+              >
+                Submit Your CV
+              </button>
+            </Link>
+          ) : (
+            <Link
+              to="/sign-up"
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+            >
+              <button
+                type="submit"
+                className="focus:outline-none bg-white text-primary_color font-medium rounded-lg active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
+              >
+                Submit Your CV
+              </button>
+            </Link>
+          )}
         </div>
       </div>
       <img
