@@ -121,7 +121,8 @@ const FormSection = () => {
               <p className="text-xl font-semibold text-primary_color">
                 Giuseppe Capasso
               </p>
-              <p className="xl:h-5 xl:block hidden"></p>
+              {/* <p className="xl:h-5 xl:block hidden"></p> */}
+              <p className="text-primary_color">Managing Director</p>
             </div>
             <div className="flex gap-3">
               <IoLocationSharp className="text-xl text-primary_color" />

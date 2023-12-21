@@ -36,6 +36,30 @@ export const handleFindJobByKeywords = createAsyncThunk(
   }
 );
 
+export const handleFindJobFilter = createAsyncThunk(
+  "job/handleFindJobFilter",
+  async ({ data }, { rejectWithValue }) => {
+    toast.dismiss();
+    console.log(data);
+    const response = await GetUrl(`all-job?${data}`
+      // `all-job?title=${title ?? ""}&city=${city ?? ""}&page=${
+      //   pageNumber ?? ""
+      // }&limit=${limit ?? ""}&minSalary=${minSalary ?? ""}&maxSalary=${
+      //   maxSalary ?? ""
+      // }&category=${categoryId ?? ""}&jobType=${jobType ?? ""}`
+
+    )
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        toast.error(err?.response?.data?.message);
+        return rejectWithValue(err?.response?.data);
+      });
+    return response;
+  }
+);
+
 export const handleFindJobById = createAsyncThunk(
   "job/handleFindJobById",
   async ({ id }, { rejectWithValue }) => {
@@ -140,6 +164,27 @@ const JobSlice = createSlice({
       state.totalJobCount = payload?.totalJobCount;
     });
     builder.addCase(handleFindJobByKeywords.rejected, (state, { payload }) => {
+      state.findJobLoading = false;
+      state.error = payload ?? null;
+      state.jobs = [];
+      state.currPage = 0;
+      state.totalPages = 0;
+      state.totalJobCount = 0;
+    });
+    // find job filter
+    builder.addCase(handleFindJobFilter.pending, (state, {}) => {
+      state.findJobLoading = true;
+      state.error = null;
+    });
+    builder.addCase(handleFindJobFilter.fulfilled, (state, { payload }) => {
+      state.findJobLoading = false;
+      state.error = null;
+      state.jobs = payload?.job;
+      state.currPage = payload?.currPage;
+      state.totalPages = payload?.totalPages;
+      state.totalJobCount = payload?.totalJobCount;
+    });
+    builder.addCase(handleFindJobFilter.rejected, (state, { payload }) => {
       state.findJobLoading = false;
       state.error = payload ?? null;
       state.jobs = [];
