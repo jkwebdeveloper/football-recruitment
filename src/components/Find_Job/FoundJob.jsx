@@ -2,6 +2,7 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoGrid, IoGridOutline, IoLocationOutline } from "react-icons/io5";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import { MdOutlineViewAgenda, MdViewAgenda } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -13,16 +14,10 @@ const FoundJob = () => {
   const { jobs, findJobLoading } = useSelector((s) => s.root.job);
 
   const dispatch = useDispatch();
-  // const  {items} = props
-  // const [itemOffset, setItemOffset] = useState(0);
-  // const endOffset = itemOffset + itemsPerPage;
-  // const currentItems = items.slice(itemOffset, endOffset);
-  // const pageCount = Math.ceil(items.length / itemsPerPage);
 
-  // const handlePageClick = (event) => {
-  //   const newOffset = (event.selected * itemsPerPage) % items.length;
-  //   setItemOffset(newOffset, items, currentItems, pageCount);
-  // };
+  const handlePageClick = (data) => {
+    console.log(data, "click");
+  };
 
   return (
     <div className="md:w-4/5 w-full mx-auto space-y-5">
@@ -195,23 +190,36 @@ const FoundJob = () => {
           )}
         </div>
       )}
-
-      {/* <div className="flex gap-3 mr-auto">
-        <ReactPaginate
-          breakLabel="..."
-          nextLabel="<"
-          // onPageChange={handlePageClick}
-          pageRangeDisplayed={5}
-          // pageCount={pageCount}
-          previousLabel=">"
-          renderOnZeroPageCount={null}
-          containerClassName="pagination"
-          previousLinkClassName="page-num"
-          pageLinkClassName="page-num"
-          activeLinkClassName="active"
-          nextLinkClassName="page-num"
-        />
-      </div> */}
+      <div className="flex xl:flex-row flex-col items-center w-full gap-3 ">
+        <div className="xl:w-[80%] w-full flex md:flex-row flex-col gap-3 items-center justify-between">
+          {/* pagination */}
+          <ReactPaginate
+            // onPageChange={changePage}
+            previousLabel={
+              <p className="bg-gray-200 w-10 h-10 p-2 rounded-md">
+                <BsChevronLeft className="h-5 w-5 rounded-md text-black" />
+              </p>
+            }
+            nextLabel={
+              <p className="bg-gray-200 w-10 h-10 p-2 rounded-md">
+                <BsChevronRight className="h-5 w-5 rounded-md text-black" />
+              </p>
+            }
+            pageClassName="bg-gray-200 text-black px-2 py-2 rounded-md text-center  hover:bg-primary_color hover:text-white"
+            pageLinkClassName="p-2"
+            breakLabel="..."
+            breakClassName=""
+            breakLinkClassName=""
+            pageRangeDisplayed={3}
+            marginPagesDisplayed={1}
+            pageCount={20}
+            containerClassName=""
+            activeClassName="active"
+            className="flex items-center md:gap-3 gap-2 flex-wrap"
+            // forcePage={pagination}
+          />
+        </div>
+      </div>
     </div>
   );
 };

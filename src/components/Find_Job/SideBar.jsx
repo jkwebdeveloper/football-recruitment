@@ -91,7 +91,7 @@ const SideBar = () => {
         } else {
           const obj = [];
           for (const val in AllData) {
-            if (AllData[val][key] != value) {
+            if (AllData?.[val]?.[key] != value) {
               obj[val] = AllData[val];
             }
           }
@@ -106,7 +106,7 @@ const SideBar = () => {
         } else {
           const obj = [];
           for (const val in AllData) {
-            if (AllData[val][key] != value) {
+            if (AllData?.[val]?.[key] != value) {
               obj[val] = AllData[val];
             }
           }
@@ -152,7 +152,7 @@ const SideBar = () => {
         } else {
           const obj = [];
           for (const val in AllData) {
-            if (AllData[val][key] != categoryId) {
+            if (AllData?.[val]?.[key] != categoryId) {
               obj[val] = AllData[val];
             }
           }
@@ -206,7 +206,7 @@ const SideBar = () => {
         } else {
           const obj = [];
           for (const val in AllData) {
-            if (AllData[val][key] != value) {
+            if (AllData?.[val]?.[key] != value) {
               obj[val] = AllData[val];
             }
           }
@@ -281,7 +281,7 @@ const SideBar = () => {
         } else {
           const obj = [];
           for (const val in AllData) {
-            if (AllData[val][key] != value) {
+            if (AllData?.[val]?.[key] != value) {
               obj[val] = AllData[val];
             }
           }
@@ -333,7 +333,7 @@ const SideBar = () => {
         } else {
           const obj = [];
           for (const val in AllData) {
-            if (AllData[val][key] != value) {
+            if (AllData?.[val]?.[key] != value) {
               obj[val] = AllData[val];
             }
           }
