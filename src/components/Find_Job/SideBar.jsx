@@ -210,7 +210,7 @@ const SideBar = () => {
               obj[val] = AllData[val];
             }
           }
-          for (const [key, val] of categories.entries()) {
+          for (const [key, val] of countryList.entries()) {
             if (val["country"] == value) {
               arr[key] = { ...val, selected: false };
             } else {

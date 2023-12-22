@@ -41,14 +41,13 @@ const JobDetailBanner = () => {
           <div className="bg-white gap-2 flex-col lg:flex-row lg:w-full  w-full px-3 py-4">
             <div className="flex-col flex lg:flex-row space-y-5 lg:space-y-0 justify-between">
               <div className="flex lg:flex-row items-center gap-4">
-                <div className="bg-primary_color rounded-full flex justify-center text-white items-center w-12 h-12 ">
-                  {singleJob?.title
-                    ?.split(" ")
-                    .map(function (item) {
-                      return item[0];
-                    })
-                    .join("")}
-                </div>
+                <img
+                  src={"https://football-recruitment.onrender.com".concat(
+                    singleJob?.recruiter?.image
+                  )}
+                  alt=""
+                  className="lg:w-12 lg:h-12 h-8 w-8 rounded-full"
+                />
                 <div className="md:space-y-1">
                   <p className="xl:text-3xl md:text-base text-sm font-semibold text-primary_color">
                     {singleJob?.title}

@@ -8,7 +8,7 @@ export const handleFindJobByKeywords = createAsyncThunk(
     {
       title,
       city,
-      pageNumber,
+      page,
       limit,
       minSalary,
       maxSalary,
@@ -20,8 +20,8 @@ export const handleFindJobByKeywords = createAsyncThunk(
     toast.dismiss();
     const response = await GetUrl(
       `all-job?title=${title ?? ""}&city=${city ?? ""}&page=${
-        pageNumber ?? ""
-      }&limit=${limit ?? ""}&minSalary=${minSalary ?? ""}&maxSalary=${
+        page ?? "1"
+      }&limit=${limit ?? "5"}&minSalary=${minSalary ?? ""}&maxSalary=${
         maxSalary ?? ""
       }&category=${categoryId ?? ""}&jobType=${jobType ?? ""}`
     )
@@ -41,13 +41,13 @@ export const handleFindJobFilter = createAsyncThunk(
   async ({ data }, { rejectWithValue }) => {
     toast.dismiss();
     console.log(data);
-    const response = await GetUrl(`all-job?${data}`
+    const response = await GetUrl(
+      `all-job?${data}`
       // `all-job?title=${title ?? ""}&city=${city ?? ""}&page=${
       //   pageNumber ?? ""
       // }&limit=${limit ?? ""}&minSalary=${minSalary ?? ""}&maxSalary=${
       //   maxSalary ?? ""
       // }&category=${categoryId ?? ""}&jobType=${jobType ?? ""}`
-
     )
       .then((res) => {
         return res.data;

@@ -7,17 +7,46 @@ import { MdOutlineViewAgenda, MdViewAgenda } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import ReactPaginate from "react-paginate";
+import { handleFindJobByKeywords } from "../../redux/JobSlice";
 
 const FoundJob = () => {
   const [view, setView] = useState("grid");
+  const [currentPage, setCurrentPage] = useState(0);
+  const [totalJobs, setTotalJobs] = useState(0);
 
   const { jobs, findJobLoading } = useSelector((s) => s.root.job);
 
   const dispatch = useDispatch();
 
-  const handlePageClick = (data) => {
-    console.log(data, "click");
+  const handleFindJob = (selectedPage) => {
+    const page = selectedPage + 1; // Pages start from 1
+    setCurrentPage(selectedPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    dispatch(
+      handleFindJobByKeywords({
+        page: page,
+        limit: 10,
+      })
+    );
   };
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      const response = await dispatch(
+        handleFindJobByKeywords({
+          page: currentPage + 1,
+          limit: 10,
+        })
+      );
+
+      // Assuming your API response contains a property like 'totalJobs'
+      if (response.payload) {
+        setTotalJobs(response.payload.totalPages);
+      }
+    };
+
+    fetchJobs();
+  }, [currentPage, dispatch]);
 
   return (
     <div className="md:w-4/5 w-full mx-auto space-y-5">
@@ -194,7 +223,8 @@ const FoundJob = () => {
         <div className="xl:w-[80%] w-full flex md:flex-row flex-col gap-3 items-center justify-between">
           {/* pagination */}
           <ReactPaginate
-            // onPageChange={changePage}
+            initialPage={currentPage}
+            onPageChange={(selected) => handleFindJob(selected.selected)}
             previousLabel={
               <p className="bg-gray-200 w-10 h-10 p-2 rounded-md">
                 <BsChevronLeft className="h-5 w-5 rounded-md text-black" />
@@ -212,11 +242,10 @@ const FoundJob = () => {
             breakLinkClassName=""
             pageRangeDisplayed={3}
             marginPagesDisplayed={1}
-            pageCount={20}
+            pageCount={totalJobs}
             containerClassName=""
             activeClassName="active"
             className="flex items-center md:gap-3 gap-2 flex-wrap"
-            // forcePage={pagination}
           />
         </div>
       </div>
