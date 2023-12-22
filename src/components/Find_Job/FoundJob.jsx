@@ -13,21 +13,15 @@ const FoundJob = () => {
   const [view, setView] = useState("grid");
   const [currentPage, setCurrentPage] = useState(0);
   const [totalJobs, setTotalJobs] = useState(0);
+  const [totalJobCount, setTotalJobCount] = useState(0);
 
   const { jobs, findJobLoading } = useSelector((s) => s.root.job);
 
   const dispatch = useDispatch();
 
   const handleFindJob = (selectedPage) => {
-    const page = selectedPage + 1; // Pages start from 1
     setCurrentPage(selectedPage);
     window.scrollTo({ top: 0, behavior: "smooth" });
-    dispatch(
-      handleFindJobByKeywords({
-        page: page,
-        limit: 10,
-      })
-    );
   };
 
   useEffect(() => {
@@ -39,9 +33,9 @@ const FoundJob = () => {
         })
       );
 
-      // Assuming your API response contains a property like 'totalJobs'
       if (response.payload) {
         setTotalJobs(response.payload.totalPages);
+        setTotalJobCount(response.payload.totalJobCount);
       }
     };
 
@@ -52,7 +46,7 @@ const FoundJob = () => {
     <div className="md:w-4/5 w-full mx-auto space-y-5">
       <div className="flex justify-between items-center">
         <div className="xl:text-2xl text-sm text-primary_color font-medium">
-          {jobs.length} JOBS FOUND
+          {totalJobCount} JOBS FOUND
         </div>
         <div className="flex justify-between lg:gap-10 gap-3">
           <div className="flex items-center lg:gap-3 gap-0">
