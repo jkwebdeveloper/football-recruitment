@@ -50,9 +50,9 @@ const SignUp = () => {
       .trim()
       .required("Password is must be required"),
     // country: yup.string().required("country is required"),
-    city: yup.string().required("City is required !"),
+    city: yup.string().required("City field is required !"),
     state: yup.string().required("State field is required !"),
-    phone: yup.string().required("Phone is required !"),
+    phone: yup.string().required("Phone Number is required !"),
   });
 
   const formik = useFormik({

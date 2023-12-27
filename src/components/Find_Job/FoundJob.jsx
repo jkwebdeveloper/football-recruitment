@@ -29,7 +29,7 @@ const FoundJob = () => {
       const response = await dispatch(
         handleFindJobByKeywords({
           page: currentPage + 1,
-          limit: 10,
+          limit: 20,
         })
       );
 
