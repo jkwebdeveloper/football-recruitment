@@ -13,7 +13,7 @@ const PopularJobs = () => {
   const handleGetJob = () => {
     setLoading(true);
     axios
-      .get("https://football-recruitment.onrender.com/api/all/jobs", {
+      .get("https://admin.footballrecruitment.eu/api/all/jobs", {
         headers: {
           "Content-Type": "application/json",
         },

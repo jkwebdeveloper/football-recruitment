@@ -42,7 +42,7 @@ const JobDetailBanner = () => {
             <div className="flex-col flex lg:flex-row space-y-5 lg:space-y-0 justify-between">
               <div className="flex lg:flex-row items-center gap-4">
                 <img
-                  src={"https://football-recruitment.onrender.com".concat(
+                  src={"https://admin.footballrecruitment.eu".concat(
                     singleJob?.recruiter?.image
                   )}
                   alt=""

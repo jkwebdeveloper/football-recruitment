@@ -8,7 +8,7 @@ const Description = () => {
 
   const handleGetdescription = () => {
     axios
-      .get("https://football-recruitment.onrender.com/api/whoWeAre", {
+      .get("https://admin.footballrecruitment.eu/api/whoWeAre", {
         headers: {
           "Content-Type": "application/json",
         },

@@ -27,7 +27,7 @@ function FindMyForm({ from }) {
   const handleSearchJob = () => {
     axios
       .get(
-        `https://football-recruitment.onrender.com/api/autocomplete/title?title=${jobTitleKeyword}`,
+        `https://admin.footballrecruitment.eu/api/autocomplete/title?title=${jobTitleKeyword}`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -45,7 +45,7 @@ function FindMyForm({ from }) {
   const handleSearchLocation = () => {
     axios
       .get(
-        `https://football-recruitment.onrender.com/api/autocomplete/city?city=${locationKeyword}`,
+        `https://admin.footballrecruitment.eu/api/autocomplete/city?city=${locationKeyword}`,
         {
           headers: {
             "Content-Type": "application/json",

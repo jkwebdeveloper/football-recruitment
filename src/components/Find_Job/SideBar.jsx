@@ -37,7 +37,7 @@ const SideBar = () => {
     const fetchData = async () => {
       try {
         axios
-          .get("https://football-recruitment.onrender.com/api/category")
+          .get("https://admin.footballrecruitment.eu/api/category")
           .then(({ data }) => {
             const obj = [];
             for (const key in data?.categoryList) {

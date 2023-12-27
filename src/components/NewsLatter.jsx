@@ -10,7 +10,7 @@ const NewsLatter = () => {
 
   const handlePost = (values) => {
     setLoading(true);
-    axios("https://football-recruitment.onrender.com/api/newsletter", {
+    axios("https://admin.footballrecruitment.eu/api/newsletter", {
       method: "post",
       data: {
         email: values.email,

@@ -1,4 +1,4 @@
-export const baseURL = "https://football-recruitment.onrender.com/api/";
+export const baseURL = "https://admin.footballrecruitment.eu/api/";
 
 export const endPoints = {
   login: "login",

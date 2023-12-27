@@ -13,7 +13,7 @@ const DreamJob = () => {
 
   const handleGetBanner = () => {
     axios
-      .get("https://football-recruitment.onrender.com/api/banner", {
+      .get("https://admin.footballrecruitment.eu/api/banner", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -41,7 +41,7 @@ const DreamJob = () => {
       ) : banner ? (
         <div className="">
           <img
-            src={"https://football-recruitment.onrender.com".concat(
+            src={"https://admin.footballrecruitment.eu".concat(
               banner?.image
             )}
             alt="banner"

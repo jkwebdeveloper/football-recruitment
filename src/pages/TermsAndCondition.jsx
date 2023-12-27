@@ -12,7 +12,7 @@ const TermsAndCondition = () => {
 
   const handleGetTermsAndCondition = () => {
     axios
-      .get("https://football-recruitment.onrender.com/api/terms", {
+      .get("https://admin.footballrecruitment.eu/api/terms", {
         headers: {
           "Content-Type": "application/json",
         },

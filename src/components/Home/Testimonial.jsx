@@ -14,7 +14,7 @@ const Testimonial = () => {
 
   const handleGetTestimonial = () => {
     axios
-      .get("https://football-recruitment.onrender.com/api/testimonial", {
+      .get("https://admin.footballrecruitment.eu/api/testimonial", {
         headers: {
           "Content-Type": "application/json",
         },
@@ -54,7 +54,7 @@ const Testimonial = () => {
                 <div className="flex xl:flex-row flex-col xl:gap-14 gap-3 items-center  xl:px-14">
                   <div className="xl:space-y-8 space-y-4">
                     <img
-                      src={"https://football-recruitment.onrender.com".concat(
+                      src={"https://admin.footballrecruitment.eu".concat(
                         testimonial?.image
                       )}
                       alt=""

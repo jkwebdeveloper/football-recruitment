@@ -22,7 +22,7 @@ const FormSection = () => {
 
   const handlePost = (values) => {
     setLoading(true);
-    axios("https://football-recruitment.onrender.com/api/contact", {
+    axios("https://admin.footballrecruitment.eu/api/contact", {
       method: "post",
       data: {
         email: values.email,
@@ -47,7 +47,7 @@ const FormSection = () => {
 
   // const handleGetContact = () => {
   //   axios
-  //     .get("https://football-recruitment.onrender.com/api/contact", {
+  //     .get("https://admin.footballrecruitment.eu/api/contact", {
   //       headers: {
   //         "Content-Type": "application/json",
   //       },

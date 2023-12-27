@@ -96,7 +96,7 @@ const FoundJob = () => {
                     <div className="flex items-center justify-between">
                       <div className="flex xl:gap-4 gap-2 items-center justify-between">
                         <img
-                          src={"https://football-recruitment.onrender.com".concat(
+                          src={"https://admin.footballrecruitment.eu".concat(
                             job?.recruiter?.image
                           )}
                           alt=""
@@ -155,7 +155,7 @@ const FoundJob = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex xl:gap-4 gap-2 items-center justify-between">
                       <img
-                        src={"https://football-recruitment.onrender.com".concat(
+                        src={"https://admin.footballrecruitment.eu".concat(
                           job?.recruiter?.image
                         )}
                         alt=""

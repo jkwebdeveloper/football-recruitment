@@ -12,7 +12,7 @@ const PrivacyPolicy = () => {
 
   const handleGetPrivacyPolicy = () => {
     axios
-      .get("https://football-recruitment.onrender.com/api/privacy", {
+      .get("https://admin.footballrecruitment.eu/api/privacy", {
         headers: {
           "Content-Type": "application/json",
         },
