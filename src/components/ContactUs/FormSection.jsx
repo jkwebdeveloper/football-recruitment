@@ -11,16 +11,16 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { ReCAPTCHA } from "react-google-recaptcha";
+import  ReCAPTCHA  from "react-google-recaptcha";
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
   const [contact, setContact] = useState({});
-  // const [captchaverfied, setCaptchaVerfied] = useState(false);
+  const [captchaverfied, setCaptchaVerfied] = useState(false);
 
   function handlChange(value) {
-    setFieldValue("captcha", value);
+    setCaptchaVerfied("captcha", value);
   }
 
   const captchaRef = useRef(null);
@@ -313,14 +313,14 @@ const FormSection = () => {
                 onChange={handlChange}
                 ref={captchaRef}
               />
-              <p className="error" style={{ color: "red", fontSize: "13px" }}>
+              {/* <p className="error" style={{ color: "red", fontSize: "13px" }}>
                 {errors.captcha}
-              </p>
+              </p> */}
               <button
                 type="submit"
                 className="blue_button px-9"
                 onClick={handleSubmit}
-                disabled={!captchaverfied}
+                // disabled={!captchaverfied}
               >
                 {loading ? "Loading..." : "Submit"}
               </button>
