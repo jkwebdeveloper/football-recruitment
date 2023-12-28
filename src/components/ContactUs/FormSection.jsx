@@ -17,6 +17,11 @@ import { ReCAPTCHA } from "react-google-recaptcha";
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
   const [contact, setContact] = useState({});
+  // const [captchaverfied, setCaptchaVerfied] = useState(false);
+
+  function handlChange(value) {
+    setFieldValue("captcha", value);
+  }
 
   const captchaRef = useRef(null);
 
@@ -304,8 +309,8 @@ const FormSection = () => {
                 ) : null} */}
               </div>
               <ReCAPTCHA
-                sitekey={process.env.REACT_APP_SITE_KEY}
-                onChange={(value) => console.log("captcha", value)}
+                sitekey="6Lcqjj4pAAAAALsQ_morAd-9jilhVOIFmKGeGiOz"
+                onChange={handlChange}
                 ref={captchaRef}
               />
               <p className="error" style={{ color: "red", fontSize: "13px" }}>
@@ -315,6 +320,7 @@ const FormSection = () => {
                 type="submit"
                 className="blue_button px-9"
                 onClick={handleSubmit}
+                disabled={!captchaverfied}
               >
                 {loading ? "Loading..." : "Submit"}
               </button>
