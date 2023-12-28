@@ -43,7 +43,9 @@ const Footer = () => {
           className="lg:w-3/5 w-32"
         />
         <div className="space-y-4 text-white">
-          <p className="text-white text-base font-normal footer heading">Quick links</p>
+          <p className="text-white text-base font-normal footer heading">
+            Quick links
+          </p>
           <p className="text-sm cursor-pointer font-light ">
             <Link
               to="/"
@@ -96,7 +98,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="space-y-4 text-white">
-          <p className="text-white text-base font-normal footer heading">Resources</p>
+          <p className="text-white text-base font-normal footer heading">
+            Resources
+          </p>
           <p className="text-sm cursor-pointer font-light ">
             <Link
               to="/contact"
@@ -119,7 +123,9 @@ const Footer = () => {
           </p> */}
         </div>
         <div className="space-y-4 text-white">
-          <p className="text-white text-base font-normal footer heading">Legal</p>
+          <p className="text-white text-base font-normal footer heading">
+            Legal
+          </p>
           <p className="text-sm cursor-pointer font-light ">
             <Link
               to="/privacy-policy"
@@ -142,7 +148,9 @@ const Footer = () => {
           </p>
         </div>
         <div className="space-y-4 text-white">
-          <p className="text-white text-base font-normal footer heading">Social Media</p>
+          <p className="text-white text-base font-normal footer heading">
+            Social Media
+          </p>
           <div className="flex items-center gap-6">
             {/* <div className=" text-white text-2xl  cursor-pointer ">
               <FaPinterest />
@@ -160,7 +168,12 @@ const Footer = () => {
               <FaInstagram />
             </div> */}
             <div className=" text-white text-2xl  cursor-pointer ">
-              <FaLinkedinIn />
+              <a
+                href="https://www.linkedin.com/company/football-recruitment/"
+                target="_blank"
+              >
+                <FaLinkedinIn />
+              </a>
             </div>
           </div>
         </div>
