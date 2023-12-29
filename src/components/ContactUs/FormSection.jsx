@@ -11,21 +11,26 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
-import  ReCAPTCHA  from "react-google-recaptcha";
+import ReCAPTCHA from "react-google-recaptcha";
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
+
+const SITE_KEY  = "6Lcqjj4pAAAAALsQ_morAd-9jilhVOIFmKGeGiOz"
+// const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
   const [contact, setContact] = useState({});
-  const [captchaverfied, setCaptchaVerfied] = useState(false);
+  const [recaptchavalue, SetRecaptchaValue] = useState("");
 
-  function handlChange(value) {
-    setCaptchaVerfied("captcha", value);
-  }
-
-  const captchaRef = useRef(null);
+  // captchaRef.current.reset()
+  const onChange = (value) => {
+    SetRecaptchaValue(value);
+    // console.log(value, "recaptcha");
+  };
+  const captchaRef = useRef();
 
   const handlePost = (values) => {
+    console.log(values);
     setLoading(true);
     axios("https://admin.footballrecruitment.eu/api/contact", {
       method: "post",
@@ -34,6 +39,7 @@ const FormSection = () => {
         name: values.name,
         phone: values.phone,
         message: values.message,
+        recaptchaToken: recaptchavalue
       },
       headers: {
         "Content-Type": "application/json",
@@ -41,6 +47,8 @@ const FormSection = () => {
     })
       .then((res) => {
         // console.log(res.data);
+        SetRecaptchaValue("");
+        captchaRef.current.reset();
         setLoading(false);
       })
       .catch((err) => {
@@ -298,7 +306,7 @@ const FormSection = () => {
                 >
                   {errors.message}
                 </span>
-                {/* {errors.message && touched.message ? (
+                {errors.message && touched.message ? (
                   <BiErrorCircle
                     style={{
                       float: "right",
@@ -306,16 +314,20 @@ const FormSection = () => {
                       color: "red",
                     }}
                   />
-                ) : null} */}
+                ) : null}
               </div>
               <ReCAPTCHA
-                sitekey="6Lcqjj4pAAAAALsQ_morAd-9jilhVOIFmKGeGiOz"
-                onChange={handlChange}
+                sitekey={SITE_KEY}
+                name="captcha"
+                // value={values.captcha}
+                onChange={onChange}
                 ref={captchaRef}
               />
-              {/* <p className="error" style={{ color: "red", fontSize: "13px" }}>
-                {errors.captcha}
-              </p> */}
+              {recaptchavalue !== "" ? null : (
+                <p className="error" style={{ color: "red", fontSize: "13px" }}>
+                  {errors.captcha}
+                </p>
+              )}
               <button
                 type="submit"
                 className="blue_button px-9"

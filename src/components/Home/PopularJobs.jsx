@@ -37,10 +37,6 @@ const PopularJobs = () => {
         <h1 className="lg:text-[32px] title_blue text-center text-lg font-bold">
           Popular jobs <span className="text-black"> for you</span>{" "}
         </h1>
-        <p className="lg:w-4/5 w-11/12 text-justify  lg:text-center text-sm lg:text-[16px] mx-auto">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.
-        </p>
       </div>
       {loading ? (
         <div className="flex justify-center mx-auto w-40">
