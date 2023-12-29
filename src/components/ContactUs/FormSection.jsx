@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
 
-const SITE_KEY  = "6Lcqjj4pAAAAALsQ_morAd-9jilhVOIFmKGeGiOz"
+const SITE_KEY  = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_"
 // const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
 
 const FormSection = () => {
