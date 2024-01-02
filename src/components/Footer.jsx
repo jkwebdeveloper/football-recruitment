@@ -184,7 +184,7 @@ const Footer = () => {
       </div>
       <div className="text-center p-3">
         <p className="text-white text-sm">
-          Copyright @FOOTBALL Recruitment 2023 All Right Reserved
+          Copyright @Football Recruitment 2023 All Right Reserved
         </p>
       </div>
     </div>
