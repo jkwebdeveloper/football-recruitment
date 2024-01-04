@@ -14,7 +14,7 @@ import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
 
-const SITE_KEY  = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_"
+const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
 // const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
 
 const FormSection = () => {
@@ -39,7 +39,7 @@ const FormSection = () => {
         name: values.name,
         phone: values.phone,
         message: values.message,
-        recaptchaToken: recaptchavalue
+        recaptchaToken: recaptchavalue,
       },
       headers: {
         "Content-Type": "application/json",
@@ -122,11 +122,18 @@ const FormSection = () => {
             </div>
             <div className="flex gap-3">
               <TfiWorld className="text-lg text-primary_color" />
-              <p className="font-medium">www.footballrecruitment.eu</p>
+              <a href="https://www.footballrecruitment.eu/" target="_blank">
+                <p className="font-medium">www.footballrecruitment.eu</p>
+              </a>
             </div>
             <div className="flex gap-3">
               <BiLogoLinkedin className="text-lg text-primary_color" />
-              <p className="font-medium">gennarocapasso</p>
+              <a
+                href="https://www.linkedin.com/in/gennarocapasso/"
+                target="_blank"
+              >
+                <p className="font-medium">gennarocapasso</p>
+              </a>
             </div>
           </div>
           <div className="2xl:py-4 2xl:px-4 xl:p-5 p-3 2xl:p-0 space-y-3">
@@ -166,11 +173,15 @@ const FormSection = () => {
             </div>
             <div className="flex gap-3">
               <TfiWorld className="text-lg text-primary_color" />
-              <p className="font-medium">www.footballrecruitment.eu</p>
+              <a href="https://www.footballrecruitment.eu/" target="_blank">
+                <p className="font-medium">www.footballrecruitment.eu</p>
+              </a>
             </div>
             <div className="flex gap-3">
               <BiLogoLinkedin className="text-lg text-primary_color" />
-              <p className="font-medium">giuseppecapasso</p>
+              <a href="https://www.linkedin.com/in/gcapasso/" target="_blank">
+                <p className="font-medium">giuseppecapasso</p>
+              </a>
             </div>
           </div>
         </div>
