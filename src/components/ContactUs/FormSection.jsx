@@ -12,8 +12,7 @@ import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
-import Lottie from "lottie-react";
-import successfull from "../../assets/SuccessFullmassage.json";
+import logo from "../../assets/Logo-color.svg";
 import { AiOutlineClose } from "react-icons/ai";
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
 
@@ -25,9 +24,8 @@ const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
-  const [contact, setContact] = useState({});
   const [recaptchavalue, SetRecaptchaValue] = useState("");
-  const [successModal, setSuccessModal] = useState(false);
+  const [successModal, setSuccessModal] = useState(true);
 
   // captchaRef.current.reset()
   const onChange = (value) => {
@@ -372,12 +370,13 @@ const FormSection = () => {
             />
             <div className="p-2 space-y-4">
               <div className="flex justify-center mx-auto w-40">
-                <Lottie animationData={successfull} loop={true} />
+                <img src={logo} alt="Football recruitment" />
               </div>
-              <p className="text-center">
+              <p className="text-center font-semibold text-primary_color">
+                Thanks for submitting an Inquiry
+              </p>
+              <p className="text-center font-semibold text-primary_color">
                 We have received your message and we will contact you shortly.
-                <br />
-                Thanks from Football Recruitment.
               </p>
             </div>
           </div>

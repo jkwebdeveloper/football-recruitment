@@ -31,12 +31,15 @@ const ResumeModal = ({ visible, onClose }) => {
       })
       .test(
         "type",
-        "Only the following formats are accepted: .pdf, .doc",
+        "Only the following formats are accepted: .pdf, .doc, .docx, .odt",
         (value) => {
           return (
             value &&
             (value[0].type === "application/pdf" ||
-              value[0].type === "application/msword")
+              value[0].type === "application/msword" ||
+              value[0].type ===
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+              value[0].type === "application/vnd.oasis.opendocument.text")
           );
         }
       ),
@@ -75,7 +78,7 @@ const ResumeModal = ({ visible, onClose }) => {
           dispatch(handleGetResume({ token, signal: AbortControllerRef }));
           toast.success("Resume uploaded successfully.");
           reset();
-          setResume(null)
+          setResume(null);
           onClose();
         }
       });
@@ -134,7 +137,7 @@ const ResumeModal = ({ visible, onClose }) => {
                 name="resume"
                 hidden
                 className="mx-auto"
-                accept="application/pdf, application/vnd.ms-excel"
+                accept=".pdf, .doc, .docx, .odt"
               />
               <label
                 for="actual-btn"

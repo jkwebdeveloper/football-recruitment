@@ -93,7 +93,12 @@ const MyResume = () => {
                   <div>
                     <p className="font-medium">{res?.resumeTitle}</p>
                     <p className="text-sm text-[#2C2C2C]">
-                      Uploaded on 22 Nov, 2023
+                      Uploaded on{" "}
+                      {new Date(res?.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                      })}
                     </p>
                   </div>
                   <div
