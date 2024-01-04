@@ -25,7 +25,7 @@ const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
   const [recaptchavalue, SetRecaptchaValue] = useState("");
-  const [successModal, setSuccessModal] = useState(true);
+  const [successModal, setSuccessModal] = useState(false);
 
   // captchaRef.current.reset()
   const onChange = (value) => {
