@@ -34,7 +34,7 @@ const TermsAndCondition = () => {
     <>
       <Helmet title="Terms-And-Condition | Football-Recruitment" />
       <div className="lg:space-y-14 space-y-8">
-        <CommonBanner title="Terms and conditions" />
+        <CommonBanner title="Terms &amp; Conditions" />
         {loading ? (
           <div className="lex justify-center mx-auto w-40">
             <Lottie
@@ -45,7 +45,7 @@ const TermsAndCondition = () => {
           </div>
         ) : termsandcondition?.content ? (
           <div className="px-5 space-y-4">
-            <div className="font-medium xl:text-3xl text-lg">
+            <div className="font-semibold text-primary_color xl:text-3xl text-lg">
               {termsandcondition?.title}
             </div>
             <div className="space-y-4">

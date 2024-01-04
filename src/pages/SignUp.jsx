@@ -153,7 +153,7 @@ const SignUp = () => {
                   </div>
                   <div className="text-left">
                     <label htmlFor="email" className="label_text">
-                      email id
+                      Email Address
                     </label>
                     <input
                       type="email"

@@ -33,7 +33,7 @@ const PrivacyPolicy = () => {
     <>
       <Helmet title="Privacy-Policy | Football-Recruitment" />
       <div className="lg:space-y-14 space-y-8">
-        <CommonBanner title="Privacy policy" />
+        <CommonBanner title="Privacy Policy" />
         {loading ? (
           <div className="flex justify-center mx-auto w-40">
             <Lottie
@@ -44,7 +44,7 @@ const PrivacyPolicy = () => {
           </div>
         ) : privacypolicy?.content ? (
           <div className="px-5 space-y-4">
-            <div className="font-medium xl:text-3xl text-lg">
+            <div className="font-semibold text-primary_color xl:text-3xl text-lg">
               {privacypolicy.title}
             </div>
             <div className="space-y-4">

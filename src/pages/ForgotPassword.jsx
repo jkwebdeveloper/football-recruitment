@@ -95,7 +95,7 @@ const ForgotPassword = () => {
                 <Fragment>
                   <div className="text-left">
                     <label htmlFor="email" className="label_text">
-                      e-mail
+                      Email Address
                     </label>
                     <input
                       type="email"
@@ -106,7 +106,11 @@ const ForgotPassword = () => {
                     />
                     <span className="error">{errors?.email?.message}</span>
                   </div>
-                  <button type="submit" disabled={loading} className="blue_button mt-5">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="blue_button mt-5"
+                  >
                     {loading ? "Submitting..." : "Submit"}
                   </button>
                 </Fragment>

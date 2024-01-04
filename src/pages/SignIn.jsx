@@ -97,7 +97,7 @@ const SignIn = () => {
                 <Form autoComplete="off" onSubmit={handleSubmit}>
                   <div className="text-left md:space-y-2">
                     <label className="label_text" htmlFor="email">
-                      e-mail
+                      Email Address
                     </label>
                     <input
                       className="input_field md:space-y-2"

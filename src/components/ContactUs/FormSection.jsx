@@ -12,15 +12,22 @@ import "react-phone-input-2/lib/style.css";
 import axios from "axios";
 import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
+import Lottie from "lottie-react";
+import successfull from "../../assets/SuccessFullmassage.json";
+import { AiOutlineClose } from "react-icons/ai";
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
 
+// Live Key
 const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
+
+// localhost Key
 // const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
   const [contact, setContact] = useState({});
   const [recaptchavalue, SetRecaptchaValue] = useState("");
+  const [successModal, setSuccessModal] = useState(false);
 
   // captchaRef.current.reset()
   const onChange = (value) => {
@@ -49,11 +56,12 @@ const FormSection = () => {
         // console.log(res.data);
         SetRecaptchaValue("");
         captchaRef.current.reset();
+        setSuccessModal(true);
         setLoading(false);
       })
       .catch((err) => {
         // console.log(err);
-        toast.error("Message send successfully.", { duration: 3000 });
+        toast.error("Oops! Something went wrong.", { duration: 3000 });
         setLoading(false);
       });
   };
@@ -351,6 +359,30 @@ const FormSection = () => {
           )}
         </Formik>
       </div>
+      {/* Success Modal  */}
+      {successModal && (
+        <div
+          className="fixed -top-5 inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50"
+          onClick={() => setSuccessModal(false)}
+        >
+          <div className="bg-white md:w-2/5 w-[90%] rounded-2xl relative items-center justify-center xl:top-28 top-24 overflow-y-auto mx-auto p-5 space-y-4">
+            <AiOutlineClose
+              onClick={() => setSuccessModal(false)}
+              className="cursor-pointer absolute right-5"
+            />
+            <div className="p-2 space-y-4">
+              <div className="flex justify-center mx-auto w-40">
+                <Lottie animationData={successfull} loop={true} />
+              </div>
+              <p className="text-center">
+                We have received your message and we will contact you shortly.
+                <br />
+                Thanks from Football Recruitment.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
