@@ -112,7 +112,7 @@ const FormSection = () => {
               <ul>
                 {/* <li className="font-medium">contact@footballrecruitment.eu</li> */}
                 <li>
-                  <a href="mailto:contact@footballrecruitment.eu">
+                  <a href="mailto:gennaro@footballrecruitment.eu">
                     <p className="font-medium">
                       gennaro@footballrecruitment.eu
                     </p>
@@ -163,7 +163,7 @@ const FormSection = () => {
               <ul>
                 {/* <li className="font-medium">contact@footballrecruitment.eu</li> */}
                 <li>
-                  <a href="mailto:contact@footballrecruitment.eu">
+                  <a href="mailto:giuseppe@footballrecruitment.eu">
                     <p className="font-medium">
                       giuseppe@footballrecruitment.eu
                     </p>
