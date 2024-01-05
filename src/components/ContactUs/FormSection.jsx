@@ -373,7 +373,7 @@ const FormSection = () => {
                 <img src={logo} alt="Football recruitment" />
               </div>
               <p className="text-center font-semibold text-primary_color">
-                Thanks for submitting an Inquiry
+                Thanks for submitting an Enquiry
               </p>
               <p className="text-center font-semibold text-primary_color">
                 We have received your message and we will contact you shortly.

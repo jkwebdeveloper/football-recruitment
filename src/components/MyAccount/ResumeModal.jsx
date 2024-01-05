@@ -31,15 +31,15 @@ const ResumeModal = ({ visible, onClose }) => {
       })
       .test(
         "type",
-        "Only the following formats are accepted: .pdf, .doc, .docx, .odt",
+        "Only the following formats are accepted: .pdf, .doc, .docx",
         (value) => {
           return (
             value &&
             (value[0].type === "application/pdf" ||
               value[0].type === "application/msword" ||
               value[0].type ===
-                "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
-              value[0].type === "application/vnd.oasis.opendocument.text")
+                "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+              )
           );
         }
       ),
@@ -101,7 +101,7 @@ const ResumeModal = ({ visible, onClose }) => {
         <p className="text-primary_color text-xl font-semibold">
           Upload resume
         </p>
-        <p className="text-[#7C8493] text-sm">Upload your latest cv.</p>
+        <p className="text-[#7C8493] text-sm"> Please upload your latest CV in either DOC, DOCX, or PDF format.</p>
         <div className="text-left md:space-y-2">
           <label className="label_text" htmlFor="resumeTitle">
             Resume Title
