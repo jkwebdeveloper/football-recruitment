@@ -164,33 +164,6 @@ const SignUp = () => {
                     />
                     <ErrorMessage name="email" component={TextError} />
                   </div>
-                  {/* <div className="text-left">
-                    <label htmlFor="email" className="label_text">
-                      Country
-                    </label>
-                    <select
-                      className="input_field"
-                      onChange={(e) => {
-                        setSelectedCountry(e.target.value);
-                        setSelectedData({
-                          ...selectedData,
-                          country: e.target.value,
-                        });
-                      }}
-                      name="country"
-                      placeholder="Select Country"
-                      {...getFieldProps("country")}
-                    >
-                      {allCountries &&
-                        allCountries.map((country) => (
-                          <option key={country.name} value={country.name}>
-                            {country.name}
-                          </option>
-                        ))}
-                    </select>
-
-                    <ErrorMessage name="country" component={TextError} />
-                  </div> */}
                   <div className="text-left">
                     <label htmlFor="phone" className="label_text">
                       Phone
@@ -208,13 +181,9 @@ const SignUp = () => {
                       value={values.phone}
                       inputStyle={{
                         width: "100%",
-                        // borderRadius: "6px",
-                        // border: "1px",
                         padding: "1.2rem 0 1.2rem 3rem",
                       }}
                       disabled={loading}
-                      // dropdownStyle={{ background: "lightgray" }}
-                      // buttonStyle={{ border: "0px" }}
                     />
                     <ErrorMessage name="phone" component={TextError} />
                   </div>
@@ -277,9 +246,6 @@ const SignUp = () => {
                     type="submit"
                     className="blue_button mt-5"
                     disabled={loading}
-                    // onClick={() => {
-                    //   window.scrollTo({ top: 0, behavior: "smooth" });
-                    // }}
                   >
                     {loading ? "Signing up..." : "Sign Up"}
                   </button>

@@ -14,13 +14,17 @@ import toast from "react-hot-toast";
 import ReCAPTCHA from "react-google-recaptcha";
 import logo from "../../assets/Logo-color.svg";
 import { AiOutlineClose } from "react-icons/ai";
+import {
+  isPossiblePhoneNumber,
+  isValidPhoneNumber,
+} from "react-phone-number-input";
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
 
 // Live Key
-const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
+// const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
 
 // localhost Key
-// const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
+const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
@@ -59,7 +63,7 @@ const FormSection = () => {
       })
       .catch((err) => {
         // console.log(err);
-        toast.error("Oops! Something went wrong.", { duration: 3000 });
+        toast.error("Phone is invalid", { duration: 3000 });
         setLoading(false);
       });
   };
@@ -269,34 +273,21 @@ const FormSection = () => {
               </div>
               <div className="grid grid-cols-1">
                 <PhoneInput
+                  country={"us"}
                   countryCodeEditable={false}
                   enableSearch={true}
                   inputProps={{
                     name: "phone",
                   }}
-                  // className="border border-[#C4C4C4] w-full outline-none p-2 rounded-[4px]"
+                  onChange={(value) =>
+                    setFieldValue("phone", "+".concat(value).trim())
+                  }
                   value={values.phone}
-                  country={"us"}
-                  onChange={(value) => {
-                    // Formik's handleChange requires an object with a target property
-                    handleChange({
-                      target: {
-                        name: "phone",
-                        value: value,
-                      },
-                    });
-                  }}
-                  onBlur={handleBlur}
                   inputStyle={{
                     width: "100%",
-                    padding: "21px",
-                    paddingLeft: "54px",
+                    padding: "1.2rem 0 1.2rem 3rem",
                   }}
-                  // isValid={(value, country) => {
-                  //   You can customize the phone number validation here
-                  //   For example, check if the phone number has a specific length
-                  //   return value.length === 10; // Adjust the condition as needed
-                  // }}
+                  disabled={loading}
                 />
                 <span
                   className="error"

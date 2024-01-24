@@ -24,11 +24,21 @@ export const handleGetResume = createAsyncThunk(
 
 export const handleUploadResume = createAsyncThunk(
   "myaccount/handleUploadResume",
-  async ({ resume, resumeTitle, token, signal }, { rejectWithValue }) => {
+  async (
+    { resume, resumeTitle, jobTitle, jobSkill, experience, token, signal },
+    { rejectWithValue }
+  ) => {
     toast.dismiss();
     const formdata = new FormData();
     formdata.append("resumes", resume);
     formdata.append("resumeTitle", resumeTitle);
+    formdata.append("experience", experience);
+    for (const key in jobTitle) {
+      formdata.append("jobTitle", jobTitle[key]);
+    }
+    for (const key in jobSkill) {
+      formdata.append("jobSkill", jobSkill[key]);
+    }
     signal.current = new AbortController();
     const response = await PostUrl("resume", {
       data: formdata,
