@@ -37,7 +37,7 @@ const ResumeModal = ({ visible, onClose }) => {
           }
         );
         const jobskills = await axios.get(
-          "https://football-recruitment.onrender.com/api/job-title",
+          "https://football-recruitment.onrender.com/api/job-skill",
           // "http://192.168.29.200:5000/api/job-skill",
           {
             headers: { "Content-Type": "application/json" },
@@ -248,43 +248,45 @@ const ResumeModal = ({ visible, onClose }) => {
           </select>
           <span className="error">{errors?.experience?.message}</span>
         </div>
-        <div className="flex justify-between gap-5 items-center">
-          <div className="text-left md:space-y-2">
-            <label className="label_text" htmlFor="resumeTitle">
-              Resume Title
-            </label>
-            <input
-              className="input_field"
-              type="text"
-              placeholder="title"
-              {...register("resumeTitle")}
-            />
-            <span className="error">{errors?.resumeTitle?.message}</span>
-          </div>
-          <div className="text-left md:space-y-2 w-full">
-            <div className="xl:flex-row flex-col w-full flex xl:gap-4 gap-5 items-center justify-between">
-              <input
-                type="file"
-                {...register("resume", {
-                  onChange: (e) => setResume(e.target.files[0]),
-                })}
-                id="actual-btn"
-                name="resume"
-                hidden
-                className="mx-auto"
-                accept=".pdf, .doc, .docx, .odt"
-              />
-              <label
-                for="actual-btn"
-                className=" bg-[#C9E5F8] focus:outline-none cursor-pointer  text-primary_color font-medium active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
-              >
-                Browse file
+        <div className="text-left md:space-y-2">
+          <div className="">
+            <div>
+              <label className="label_text" htmlFor="resumeTitle">
+                Resume Title
               </label>
-              <span className="error">{errors?.resume?.message}</span>
+              <input
+                className="input_field"
+                type="text"
+                placeholder="title"
+                {...register("resumeTitle")}
+              />
+              <span className="error">{errors?.resumeTitle?.message}</span>
             </div>
-            {resume !== null && (
-              <div className="text-left text-lg">{resume?.name}</div>
-            )}
+            <div className="text-left md:space-y-2 w-full">
+              <div className="xl:flex-row flex-col w-full flex xl:gap-4 gap-5 items-center justify-between">
+                <input
+                  type="file"
+                  {...register("resume", {
+                    onChange: (e) => setResume(e.target.files[0]),
+                  })}
+                  id="actual-btn"
+                  name="resume"
+                  hidden
+                  className="mx-auto"
+                  accept=".pdf, .doc, .docx, .odt"
+                />
+                <label
+                  for="actual-btn"
+                  className=" bg-[#C9E5F8] focus:outline-none cursor-pointer  text-primary_color font-medium active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
+                >
+                  Browse file
+                </label>
+                <span className="error">{errors?.resume?.message}</span>
+              </div>
+              {resume !== null && (
+                <div className="text-left text-lg">{resume?.name}</div>
+              )}
+            </div>
           </div>
         </div>
         <button
