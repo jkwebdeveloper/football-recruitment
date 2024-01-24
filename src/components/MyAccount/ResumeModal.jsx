@@ -30,15 +30,15 @@ const ResumeModal = ({ visible, onClose }) => {
     const fetchJobTitles = async () => {
       try {
         const response = await axios.get(
-          // "https://football-recruitment.onrender.com/api/job-title",
-          "http://192.168.29.200:5000/api/job-title",
+          "https://football-recruitment.onrender.com/api/job-title",
+          // "http://192.168.29.200:5000/api/job-title",
           {
             headers: { "Content-Type": "application/json" },
           }
         );
         const jobskills = await axios.get(
-          // "https://football-recruitment.onrender.com/api/job-title",
-          "http://192.168.29.200:5000/api/job-skill",
+          "https://football-recruitment.onrender.com/api/job-title",
+          // "http://192.168.29.200:5000/api/job-skill",
           {
             headers: { "Content-Type": "application/json" },
           }
@@ -74,9 +74,9 @@ const ResumeModal = ({ visible, onClose }) => {
       .required("Job title is required"),
     jobSkill: yup
       .array()
-      .max(3, "max 3 tags")
+      .max(5, "max 5 tags")
       .min(1, "Please select at least one job Skills")
-      .required("Job title is required"),
+      .required("Job Skill is required"),
     experience: yup.string().required("Experience is required"),
     resumeTitle: yup.string().required("resume title is required"),
     resume: yup
@@ -163,7 +163,7 @@ const ResumeModal = ({ visible, onClose }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="fixed -top-4 inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50"
     >
-      <div className="bg-white md:w-1/2 w-[90%] rounded-2xl overflow-auto relative items-center justify-center xl:top-8 top-20 mx-auto p-5 space-y-2">
+      <div className="bg-white md:w-1/2 w-[90%] rounded-2xl overflow-y-auto relative items-center justify-center xl:top-2 lg:top-6 top-20 mx-auto p-5 space-y-2">
         <AiOutlineClose onClick={onClose} className="cursor-pointer ml-auto" />
         <p className="text-primary_color text-xl font-semibold">
           Upload resume
@@ -231,7 +231,7 @@ const ResumeModal = ({ visible, onClose }) => {
             id=""
             {...register("experience")}
             className="border-[#C4C4C4] focus:border-primary_color w-full outline-none md:p-2 p-1 rounded-[4px]"
-            style={{border:"1px solid #C4C4C4", padding:"8px", }}
+            style={{ border: "1px solid #C4C4C4", padding: "8px" }}
           >
             <option value="Fresher">Fresher</option>
             <option value="1">1</option>
@@ -248,21 +248,21 @@ const ResumeModal = ({ visible, onClose }) => {
           </select>
           <span className="error">{errors?.experience?.message}</span>
         </div>
-        <div className="text-left md:space-y-2">
-          <label className="label_text" htmlFor="resumeTitle">
-            Resume Title
-          </label>
-          <input
-            className="input_field"
-            type="text"
-            placeholder="title"
-            {...register("resumeTitle")}
-          />
-          <span className="error">{errors?.resumeTitle?.message}</span>
-        </div>      
-        <div className="text-left md:space-y-2">
-          <div className="xl:flex-row flex-col flex xl:gap-4 gap-5 items-center justify-between">
-            <div className="">
+        <div className="flex justify-between gap-5 items-center">
+          <div className="text-left md:space-y-2">
+            <label className="label_text" htmlFor="resumeTitle">
+              Resume Title
+            </label>
+            <input
+              className="input_field"
+              type="text"
+              placeholder="title"
+              {...register("resumeTitle")}
+            />
+            <span className="error">{errors?.resumeTitle?.message}</span>
+          </div>
+          <div className="text-left md:space-y-2 w-full">
+            <div className="xl:flex-row flex-col w-full flex xl:gap-4 gap-5 items-center justify-between">
               <input
                 type="file"
                 {...register("resume", {
@@ -282,10 +282,10 @@ const ResumeModal = ({ visible, onClose }) => {
               </label>
               <span className="error">{errors?.resume?.message}</span>
             </div>
+            {resume !== null && (
+              <div className="text-left text-lg">{resume?.name}</div>
+            )}
           </div>
-          {resume !== null && (
-            <div className="text-left text-lg">{resume?.name}</div>
-          )}
         </div>
         <button
           type="submit"

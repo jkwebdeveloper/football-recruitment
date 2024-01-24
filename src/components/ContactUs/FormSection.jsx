@@ -21,10 +21,10 @@ import {
 // import recaptcha, { ReCAPTCHA } from "react-google-recaptcha";
 
 // Live Key
-// const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
+const SITE_KEY = "6Ld_lz8pAAAAAKDojuqbCjZt3WUyjGIPLfn291S_";
 
 // localhost Key
-const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
+// const SITE_KEY = "6Ld2hD8pAAAAAB2BvYMU_L-MjTeVARuMLdhZFOIm";
 
 const FormSection = () => {
   const [loading, setLoading] = useState(false);
