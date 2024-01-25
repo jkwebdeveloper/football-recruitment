@@ -17,7 +17,7 @@ const ResumeModal = ({ visible, onClose }) => {
   const [resume, setResume] = useState(null);
   const [jobtitle, setJobTitle] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [jobSkills, setJobSkills] = useState([]);
+  // const [jobSkills, setJobSkills] = useState([]);
 
   const { token } = useSelector((state) => state.root.auth);
   const { resumeUploadLoading } = useSelector((state) => state.root.myaccount);
@@ -36,20 +36,20 @@ const ResumeModal = ({ visible, onClose }) => {
             headers: { "Content-Type": "application/json" },
           }
         );
-        const jobskills = await axios.get(
-          "https://football-recruitment.onrender.com/api/job-skill",
-          // "http://192.168.29.200:5000/api/job-skill",
-          {
-            headers: { "Content-Type": "application/json" },
-          }
-        );
+        // const jobskills = await axios.get(
+        //   "https://football-recruitment.onrender.com/api/job-skill",
+        //   // "http://192.168.29.200:5000/api/job-skill",
+        //   {
+        //     headers: { "Content-Type": "application/json" },
+        //   }
+        // );
 
-        setJobSkills(
-          jobskills.data.data.map((el) => ({
-            value: el._id,
-            label: el.name,
-          }))
-        );
+        // setJobSkills(
+        //   jobskills.data.data.map((el) => ({
+        //     value: el._id,
+        //     label: el.name,
+        //   }))
+        // );
 
         const data = response.data.data.map((el) => ({
           value: el._id,
@@ -69,14 +69,14 @@ const ResumeModal = ({ visible, onClose }) => {
   const resumeSchema = yup.object({
     jobTitle: yup
       .array()
-      .max(3, "max 3 tags")
+      .max(3, "max 3 Title required")
       .min(1, "Please select at least one job title")
       .required("Job title is required"),
-    jobSkill: yup
-      .array()
-      .max(5, "max 5 tags")
-      .min(1, "Please select at least one job Skills")
-      .required("Job Skill is required"),
+    // jobSkill: yup
+    //   .array()
+    //   .max(5, "max 5 tags")
+    //   .min(1, "Please select at least one job Skills")
+    //   .required("Job Skill is required"),
     experience: yup.string().required("Experience is required"),
     resumeTitle: yup.string().required("resume title is required"),
     resume: yup
@@ -131,7 +131,7 @@ const ResumeModal = ({ visible, onClose }) => {
         resume: resume,
         resumeTitle,
         jobTitle: jobTitle.map(({ value, ...r }) => value),
-        jobSkill: jobSkills.map(({ value, ...r }) => value),
+        // jobSkill: jobSkills.map(({ value, ...r }) => value),
         experience,
         token,
         signal: AbortControllerRef,
@@ -197,7 +197,7 @@ const ResumeModal = ({ visible, onClose }) => {
           />
           <span className="error">{errors?.jobTitle?.message}</span>
         </div>
-        <div className="text-left md:space-y-2">
+        {/* <div className="text-left md:space-y-2">
           <label className="label_text" htmlFor="jobTitle">
             Job Skill
           </label>
@@ -211,7 +211,7 @@ const ResumeModal = ({ visible, onClose }) => {
             }) => (
               <Select
                 isMulti
-                options={loading ? [] : jobSkills} // Use the dynamic jobtitles array
+                options={loading ? [] : jobSkills}
                 className="basic-multi-select"
                 name={name}
                 onChange={onChange}
@@ -220,7 +220,7 @@ const ResumeModal = ({ visible, onClose }) => {
             )}
           />
           <span className="error">{errors?.jobTitle?.message}</span>
-        </div>
+        </div> */}
         <div className="text-left md:space-y-2">
           <label className="label_text" htmlFor="resumeTitle">
             Experience

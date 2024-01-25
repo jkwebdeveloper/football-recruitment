@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ResumeModal from "./ResumeModal";
 import { RiDeleteBin6Line } from "react-icons/ri";
+import { MdFileDownload } from "react-icons/md";
 import { useDispatch, useSelector } from "react-redux";
 import {
   handleDeleteResume,
@@ -23,6 +24,7 @@ const MyResume = () => {
 
   const handleDeletereusme = (id) => {
     if (resumeUploadLoading) return;
+    console.log(resumeUploadLoading, "resume");
     toast.loading("Deleting...");
     setTimeout(() => {
       const response = dispatch(
@@ -44,7 +46,10 @@ const MyResume = () => {
   useEffect(() => {
     return () => abortApiCall();
   }, []);
-  const handleOnClose = () => setOpenModal(false);
+
+  const handleOnClose = () => {
+    setOpenModal(false);
+  };
 
   return (
     <div className="space-y-4 bg-white xl:p-5 p-2">
@@ -101,15 +106,25 @@ const MyResume = () => {
                       })}
                     </p>
                   </div>
-                  <div
-                    onClick={() => handleDeletereusme(res?._id)}
-                    className="flex items-center w-fit gap-3 cursor-pointer"
-                  >
-                    <RiDeleteBin6Line className="text-primary_color text-lg" />
-                    <p className="text-primary_color text-sm">
-                      {/* {resumeUploadLoading ? "Deleting..." : "Delete Resume"} */}
-                      Delete Resume
-                    </p>
+                  <div className="flex items-center w-fit gap-3">
+                    <a
+                      href={`https://admin.footballrecruitment.eu${res?.resumePdf}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      // onClick={() => handleDownloadResume(res)}
+                    >
+                      <MdFileDownload className="text-primary_color text-xl cursor-pointer" />
+                    </a>
+                    <div
+                      className="flex items-center w-fit gap-3 cursor-pointer"
+                      onClick={() => handleDeletereusme(res?._id)}
+                    >
+                      <RiDeleteBin6Line className="text-primary_color text-lg" />
+                      <p className="text-primary_color text-sm">
+                        {/* {resumeUploadLoading ? "Deleting..." : "Delete Resume"} */}
+                        Delete Resume
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
