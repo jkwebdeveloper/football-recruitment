@@ -1,39 +1,33 @@
 import axios from "axios";
-import { Formik } from "formik";
 import React, { Fragment, useState } from "react";
-import { GoMail } from "react-icons/go";
-import { newsLatterValidation } from "../../utils/Validations";
-import { BiErrorCircle } from "react-icons/bi";
-import Lottie from "lottie-react";
-import groovyWalkAnimation from "../../assets/loadingBar.json";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const SubscribeOur = () => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   const { user } = useSelector((s) => s.root.auth);
 
-  const handlePost = (values) => {
-    setLoading(true);
-    axios("https://admin.footballrecruitment.eu/api/newsletter", {
-      method: "post",
-      data: {
-        email: values.email,
-      },
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        console.log(res.data);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  };
+  // const handlePost = (values) => {
+  //   setLoading(true);
+  //   axios("https://admin.footballrecruitment.eu/api/newsletter", {
+  //     method: "post",
+  //     data: {
+  //       email: values.email,
+  //     },
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setLoading(false);
+  //     });
+  // };
 
   return (
     <div className="bg-[#004D7F] lg:py-16 py-5 p-5 relative text-center  text-black lg:space-y-5 space-y-2">

@@ -50,13 +50,13 @@ const FoundJob = () => {
         </div>
         <div className="flex justify-between lg:gap-10 gap-3">
           <div className="flex items-center lg:gap-3 gap-0">
-            <p className="lg:text-base text-sm">
+            {/* <p className="lg:text-base text-sm">
               Sort by:{" "}
               <span className="text-primary_color"> Most relevant</span>{" "}
             </p>
-            <IoIosArrowDown />
+            <IoIosArrowDown /> */}
           </div>
-          <div className="flex items-center lg:gap-7 gap-2">
+          <div className="flex items-center lg:gap-3 gap-2">
             {view === "grid" ? (
               <IoGrid className="text-xl text-primary_color cursor-pointer" />
             ) : (
