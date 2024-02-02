@@ -22,13 +22,15 @@ import { Form } from "formik";
 const StepOne = ({ setStep, values, setValue }) => {
   const [resume, setResume] = useState(null);
   const [jobtitle, setJobTitle] = useState([]);
-  const [jobTitleLoading, setJobTitleLoading] = useState(false)
+  const [jobTitleLoading, setJobTitleLoading] = useState(false);
   // const [jobSkills, setJobSkills] = useState([]);
 
   const { loading } = useSelector((state) => state.root.auth);
   const { resumeUploadLoading } = useSelector((state) => state.root.myaccount);
 
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const { AbortControllerRef, abortApiCall } = useAbortApiCall();
 
@@ -125,7 +127,7 @@ const StepOne = ({ setStep, values, setValue }) => {
     },
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (resumeUploadLoading) return;
     const { jobTitle, experience, resumeTitle } = data;
     setValue("jobTitle", jobTitle);
@@ -147,12 +149,13 @@ const StepOne = ({ setStep, values, setValue }) => {
         signal: AbortControllerRef,
       })
     );
-    console.log(response.payload);
-    if (response?.payload?.success === true) {
-      // dispatch(handleGetResume({  signal: AbortControllerRef }));
-      toast.success("Successfully uploaded resume.");
-      // reset();
-      // setResume(null);
+    if (response) {
+      response.then((res) => {
+        if (res?.payload?.success) {
+          toast.success("Signup successfully.");
+          navigate("/");
+        }
+      });
     }
   };
 
@@ -234,8 +237,8 @@ const StepOne = ({ setStep, values, setValue }) => {
             />
             <span className="error">{errors?.resumeTitle?.message}</span>
           </div>
-          <div className="text-left md:space-y-2 w-full">
-            <div className="xl:flex-row flex-col w-full flex xl:gap-4 gap-5 items-center justify-between">
+          <div className="text-left md:space-y-2 w-full mt-5">
+            {/* <div className="xl:flex-row flex-col w-full flex xl:gap-4 gap-5 items-center justify-between"> */}
               <input
                 type="file"
                 {...register("resume", {
@@ -254,25 +257,27 @@ const StepOne = ({ setStep, values, setValue }) => {
                 Browse file
               </label>
               <span className="error">{errors?.resume?.message}</span>
-            </div>
+            {/* </div> */}
             {resume !== null && (
               <div className="text-left text-lg">{resume?.name}</div>
             )}
           </div>
         </div>
       </div>
-      <button
-        type="button"
-        className="blue_button mt-5"
-        disabled={loading}
-        onClick={() => setStep(0)}
-      >
-        Back
-      </button>
-      <button type="submit" className="blue_button mt-5" disabled={loading}>
-        {loading ? "Signing up..." : "Sign Up"}
-        {/* Submit */}
-      </button>
+      <div className="flex gap-5 justify-center items-center">
+        <button
+          type="button"
+          className="blue_button mt-5"
+          disabled={loading}
+          onClick={() => setStep(0)}
+        >
+          Back
+        </button>
+        <button type="submit" className="blue_button mt-5" disabled={loading}>
+          {loading ? "Applying..." : "Apply"}
+          {/* Submit */}
+        </button>
+      </div>
       <p>
         Already have an account?{" "}
         <Link to="/sign-in">

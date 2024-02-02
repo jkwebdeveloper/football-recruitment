@@ -119,7 +119,7 @@ const SignUp = () => {
           <div className="bg-white md:w-1/2 xl:w-2/5 w-[85%] mt-28 mx-auto text-center rounded-3xl mb-10 shadow-[11px_13px_0px_4px_rgba(255,255,255,0.14)] md:p-6 p-2">
             <div className="md:space-y-5 space-y-3">
               <p className="text-[#123763] md:text-3xl text-lg font-bold">
-                Sign Up
+                Apply Here
               </p>
               <div className="">
                 <hr className="line" />
@@ -147,7 +147,7 @@ const SignUp = () => {
                       placeholder="Enter your name"
                       {...register("name")}
                     />
-                    <span>{errors?.name?.message}</span>{" "}
+                    <span className="error">{errors?.name?.message}</span>{" "}
                   </div>
                   <div className="text-left">
                     <label htmlFor="email" className="label_text">
@@ -160,7 +160,7 @@ const SignUp = () => {
                       placeholder="Enter your email"
                       {...register("email")}
                     />
-                    <span>{errors?.email?.message}</span>{" "}
+                    <span className="error">{errors?.email?.message}</span>{" "}
                   </div>
                   <div className="text-left">
                     <label htmlFor="phone" className="label_text">
@@ -183,7 +183,7 @@ const SignUp = () => {
                       }}
                       // disabled={loading}
                     />
-                    <span>{errors?.phone?.message}</span>{" "}
+                    <span className="error">{errors?.phone?.message}</span>{" "}
                   </div>
                   <div className="flex lg:flex-row flex-col w-full gap-3">
                     <div className="text-left w-full lg:w-1/2">
@@ -197,7 +197,7 @@ const SignUp = () => {
                         placeholder="Enter your state"
                         {...register("state")}
                       />
-                      <span>{errors?.state?.message}</span>{" "}
+                      <span className="error">{errors?.state?.message}</span>{" "}
                     </div>
                     <div className="text-left w-full lg:w-1/2">
                       <label htmlFor="email" className="label_text">
@@ -210,7 +210,7 @@ const SignUp = () => {
                         placeholder="Enter your city"
                         {...register("city")}
                       />
-                      <span>{errors?.city?.message}</span>{" "}
+                      <span className="error">{errors?.city?.message}</span>{" "}
                     </div>
                   </div>
                   <button

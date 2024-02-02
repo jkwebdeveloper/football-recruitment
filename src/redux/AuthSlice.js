@@ -60,16 +60,17 @@ export const handleRegisterUser = createAsyncThunk(
       formdata.append("phone", phone);
       formdata.append("city", city);
       formdata.append("state", state);
-      formdata.append("resume", resume);
+      formdata.append("resumes", resume);
       formdata.append("resumeTitle", resumeTitle);
       formdata.append("experience", experience);
-      formdata.append("jobTitle", "asdasd");
-      // for (const key in jobTitle) {
-      //   formdata.append("jobTitle", jobTitle[key]);
-      // }
+      // formdata.append("jobTitle", "asdasd");
+      for (const key in jobTitle) {
+        formdata.append("jobTitle", jobTitle[key]);
+      }
       // for (const key in jobSkill) {
       //   formdata.append("jobSkill", jobSkill[key]);
       // }
+
       signal.current = new AbortController();
       const { data } = await PostUrl("register", {
         data: formdata,
