@@ -25,7 +25,8 @@ const Footer = () => {
       pathname.includes("current-vacancies") ||
       pathname.includes("job-detail") ||
       pathname.includes("my-account") ||
-      pathname.includes("services")
+      pathname.includes("services") ||
+      pathname.includes("/applying-next-page")
     )
       return true;
   }

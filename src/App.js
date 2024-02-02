@@ -19,6 +19,7 @@ import MyAccount from "./pages/MyAccount";
 import Services from "./pages/Services";
 import PrivateRoute from "./pages/PrivateRoute";
 import PageNotFound from "./pages/PageNotFound";
+import StepOne from "./components/stepForm/StepOne";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPassword />} />
         {/* SignUp Form */}
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/stepone" element={<StepOne />} />
         <Route path="/success" element={<SuccessFull />} />
         {/* <Route path="/faq" element={<FAQ />} /> */}
         <Route path="/terms-and-conditions" element={<TermsAndCondition />} />

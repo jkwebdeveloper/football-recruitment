@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
 import { PostUrl, PutUrl } from "../BaseUrl";
+import axios from "axios";
 
 export const handleLoginUser = createAsyncThunk(
   "auth/handleLoginUser",
@@ -37,40 +38,54 @@ export const handleLoginUser = createAsyncThunk(
 export const handleRegisterUser = createAsyncThunk(
   "auth/handleRegisterUser",
   async (
-    { name, email, password, phone, city, state, country, signal },
+    {
+      name,
+      email,
+      phone,
+      city,
+      state,
+      resume,
+      experience,
+      resumeTitle,
+      jobTitle,
+      signal,
+    },
     { rejectWithValue }
   ) => {
-    toast.dismiss();
-    signal.current = new AbortController();
-
-    const response = await PostUrl("register", {
-      data: {
-        name,
-        email,
-        password,
-        phone,
-        city,
-        state,
-        country,
-      },
-      signal: signal.current.signal,
-    })
-      .then((res) => {
-        return res.data;
-      })
-      .catch((err) => {
-        if (err?.response?.data?.errors) {
-          for (const [key, value] of Object.entries(
-            err?.response?.data?.errors
-          )) {
-            toast.error(err?.response?.data?.errors[key]);
-          }
-        } else {
-          toast.error(err?.response?.data?.message);
-        }
-        return rejectWithValue(err?.response?.data);
+    try {
+      toast.dismiss();
+      const formdata = new FormData();
+      formdata.append("name", name);
+      formdata.append("email", email);
+      formdata.append("phone", phone);
+      formdata.append("city", city);
+      formdata.append("state", state);
+      formdata.append("resume", resume);
+      formdata.append("resumeTitle", resumeTitle);
+      formdata.append("experience", experience);
+      formdata.append("jobTitle", "asdasd");
+      // for (const key in jobTitle) {
+      //   formdata.append("jobTitle", jobTitle[key]);
+      // }
+      // for (const key in jobSkill) {
+      //   formdata.append("jobSkill", jobSkill[key]);
+      // }
+      signal.current = new AbortController();
+      const { data } = await PostUrl("register", {
+        data: formdata,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        signal: signal.current.signal,
       });
-    return response;
+
+      return data;
+    } catch (error) {
+      if (error?.response) {
+        toast.error(error?.response?.data?.message);
+        return rejectWithValue(error?.response?.data);
+      }
+    }
   }
 );
 
