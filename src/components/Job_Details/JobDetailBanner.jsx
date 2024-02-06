@@ -21,7 +21,7 @@ const JobDetailBanner = () => {
 
   const handleOpenModal = () => {
     if (user === null) {
-      return navigate("/sign-in");
+      return navigate("/sign-up");
     }
     setOpenModal(true);
   };
