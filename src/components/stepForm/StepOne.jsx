@@ -158,7 +158,7 @@ const StepOne = ({ setStep, values, setValue }) => {
         if (res?.payload?.success) {
           toast.success(res?.payload?.message, { duration: 2000 });
           // console.log(res?.payload?.message);
-          navigate("/");
+          navigate("/my-account");
         }
       });
     }
