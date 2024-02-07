@@ -78,10 +78,10 @@ export const handleFindJobById = createAsyncThunk(
 
 export const handleApplyForJob = createAsyncThunk(
   "job/handleApplyForJob",
-  async ({ id, name, email, phone, resume, token }, { rejectWithValue }) => {
+  async ({ id, name, email, phone, resume, token, title }, { rejectWithValue }) => {
     toast.dismiss();
     const response = await PostUrl(`apply/job/${id}`, {
-      data: { name, email, resumePdf: resume, phone },
+      data: { name, email, resumePdf: resume, phone, title },
       headers: { Authorization: token },
     })
       .then((res) => {

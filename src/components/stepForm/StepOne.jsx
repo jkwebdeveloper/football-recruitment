@@ -29,6 +29,8 @@ const StepOne = ({ setStep, values, setValue }) => {
   const { singleJob } = useSelector((state) => state.root.job);
   const { resumeUploadLoading } = useSelector((state) => state.root.myaccount);
 
+  console.log(singleJob?.title);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
