@@ -1,5 +1,5 @@
 import { Formik } from "formik";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { submitApplicationValidation } from "../../utils/Validations";
@@ -13,12 +13,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { isPossiblePhoneNumber } from "react-phone-number-input";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import BaseUrl from "../../BaseUrl";
+import ResumeModal from "../MyAccount/ResumeModal";
 
 const JobApplyModal = ({ visible, onClose }) => {
+  const [openModal, setOpenModal] = useState(false);
   const { loading, user, token } = useSelector((state) => state.root.auth);
   const { applyJobLoading, singleJob } = useSelector((state) => state.root.job);
   const { resume } = useSelector((s) => s.root.myaccount);
 
+  console.log(singleJob?.title, "-----------");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -53,6 +56,7 @@ const JobApplyModal = ({ visible, onClose }) => {
     const response = dispatch(
       handleApplyForJob({
         id: singleJob?._id,
+        title: singleJob?.title,
         name,
         email,
         phone,
@@ -60,10 +64,13 @@ const JobApplyModal = ({ visible, onClose }) => {
         token,
       })
     );
+    console.log(singleJob?.title,"singleJob?.title");
     if (response) {
       response.then((res) => {
         if (res?.payload?.success === true) {
-          toast.success("Job applied successfully.");
+          console.log(res, "response");
+          toast.success(res?.payload?.message);
+          console.log(res?.payload?.message);
           reset();
           onClose();
         }
@@ -73,6 +80,9 @@ const JobApplyModal = ({ visible, onClose }) => {
 
   if (!visible) return null;
 
+  const handleOnClose = () => {
+    setOpenModal(false);
+  };
   return (
     <div className="fixed -top-5 inset-0 bg-black bg-opacity-30 overflow-auto scrollbar-hide backdrop-blur-sm z-50">
       <div className="jobmodal bg-white md:w-2/5 w-[90%] rounded-2xl relative items-center justify-center xl:top-20 top-24 mx-auto p-5 space-y-4">
@@ -136,35 +146,6 @@ const JobApplyModal = ({ visible, onClose }) => {
               />
               <span className="error">{errors.phone?.message}</span>
             </div>
-            {/* <div className="text-left md:space-y-2">
-              <label className="label_text" htmlFor="email">
-                Current of previous job title
-              </label>
-              <input
-                className="input_field"
-                // id="username"
-                type="text"
-                placeholder="What’s your current or previous job title?"
-                value={values.previousjob}
-                onChange={handleChange("previousjob")}
-                onBlur={handleBlur("previousjob")}
-              />
-              <span
-                className="error"
-                style={{ color: "red", fontSize: "13px" }}
-              >
-                {errors.previousjob}
-              </span>
-              {errors.previousjob && touched.previousjob ? (
-                <BiErrorCircle
-                  style={{
-                    float: "right",
-                    marginTop: "5px",
-                    color: "red",
-                  }}
-                />
-              ) : null}
-            </div> */}
             <div className="text-left md:space-y-2">
               <label className="label_text" htmlFor="email">
                 Select your resume
@@ -187,6 +168,9 @@ const JobApplyModal = ({ visible, onClose }) => {
               </select>
               <span className="error">{errors?.resume?.message}</span>
             </div>
+            <button className="blue_button" onClick={() => setOpenModal(true)}>
+              Upload Resume
+            </button>
             <button
               type="submit"
               className="blue_button w-full"
@@ -220,6 +204,7 @@ const JobApplyModal = ({ visible, onClose }) => {
             </span>
           </p>
         </div>
+        <ResumeModal onClose={handleOnClose} visible={openModal} />
       </div>
     </div>
   );

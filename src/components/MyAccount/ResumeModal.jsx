@@ -163,7 +163,7 @@ const ResumeModal = ({ visible, onClose }) => {
       onSubmit={handleSubmit(onSubmit)}
       className="fixed -top-4 inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50"
     >
-      <div className="bg-white md:w-1/2 w-[90%] rounded-2xl overflow-y-auto relative items-center justify-center xl:top-2 lg:top-6 top-20 mx-auto p-5 space-y-2">
+      <div className="bg-white md:w-1/2 w-[90%] rounded-2xl overflow-y-auto relative items-center justify-center xl:top-20 lg:top-8 top-20 mx-auto p-5 space-y-2">
         <AiOutlineClose onClick={onClose} className="cursor-pointer ml-auto" />
         <p className="text-primary_color text-xl font-semibold">
           Upload resume

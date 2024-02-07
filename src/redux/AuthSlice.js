@@ -49,6 +49,8 @@ export const handleRegisterUser = createAsyncThunk(
       resumeTitle,
       jobTitle,
       signal,
+      jobId,
+      title,
     },
     { rejectWithValue }
   ) => {
@@ -63,6 +65,8 @@ export const handleRegisterUser = createAsyncThunk(
       formdata.append("resumes", resume);
       formdata.append("resumeTitle", resumeTitle);
       formdata.append("experience", experience);
+      formdata.append("jobId", jobId);
+      formdata.append("title", title);
       // formdata.append("jobTitle", "asdasd");
       for (const key in jobTitle) {
         formdata.append("jobTitle", jobTitle[key]);
@@ -73,6 +77,41 @@ export const handleRegisterUser = createAsyncThunk(
 
       signal.current = new AbortController();
       const { data } = await PostUrl("register", {
+        data: formdata,
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        signal: signal.current.signal,
+      });
+
+      return data;
+    } catch (error) {
+      if (error?.response) {
+        toast.error(error?.response?.data?.message);
+        return rejectWithValue(error?.response?.data);
+      }
+    }
+  }
+);
+
+export const handleSignUp = createAsyncThunk(
+  "auth/handleSignUp",
+  async (
+    { name, email, phone, city, state, password, signal },
+    { rejectWithValue }
+  ) => {
+    try {
+      toast.dismiss();
+      const formdata = new FormData();
+      formdata.append("name", name);
+      formdata.append("email", email);
+      formdata.append("phone", phone);
+      formdata.append("city", city);
+      formdata.append("state", state);
+      formdata.append("password", password);
+
+      signal.current = new AbortController();
+      const { data } = await PostUrl("signup", {
         data: formdata,
         headers: {
           "Content-Type": "multipart/form-data",
@@ -209,6 +248,22 @@ const AuthSlice = createSlice({
         state.token = payload?.token;
       })
       .addCase(handleRegisterUser.rejected, (state, { payload }) => {
+        state.loading = false;
+        state.error = payload;
+      });
+
+    // SignUp
+
+    builder
+      .addCase(handleSignUp.pending, (state, { payload }) => {
+        state.loading = true;
+      })
+      .addCase(handleSignUp.fulfilled, (state, { payload }) => {
+        state.loading = false;
+        state.user = payload?.user;
+        state.token = payload?.token;
+      })
+      .addCase(handleSignUp.rejected, (state, { payload }) => {
         state.loading = false;
         state.error = payload;
       });

@@ -1,29 +1,35 @@
-import React, { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import React, { useEffect, useState } from "react";
 import banner from "../assets/Login_BG.png";
-import Header from "../components/Header";
-import { Link, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Form, FormikProvider, useFormik, ErrorMessage } from "formik";
-import * as yup from "yup";
-import styled from "styled-components";
-import "react-phone-input-2/lib/style.css";
-import PhoneInput from "react-phone-input-2";
+import { BsEyeFill, BsEyeSlashFill } from "react-icons/bs";
 import toast from "react-hot-toast";
+import * as yup from "yup";
+import useAbortApiCall from "../hooks/useAbortCallApi";
 import {
   isPossiblePhoneNumber,
   isValidPhoneNumber,
 } from "react-phone-number-input";
 import { Helmet } from "react-helmet";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import StepOne from "../components/stepForm/StepOne";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { handleSignUp } from "../redux/AuthSlice";
+import PhoneInput from "react-phone-input-2";
+import styled from "styled-components";
+import "react-phone-input-2/lib/style.css";
+import Header from "../components/Header";
 
-const SignUp = () => {
-  const [step, setStep] = useState(0);
+const SignupNew = () => {
+  const [showPassword, setShowPassword] = useState(false);
+  const { AbortControllerRef, abortApiCall } = useAbortApiCall();
 
+  const { loading, user } = useSelector((state) => state.root.auth);
+
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const history = useHistory();
 
-  const SignupSchema = yup.object().shape({
+  const SignupNewSchema = yup.object().shape({
     name: yup
       .string()
       .min(4, "Name must be at least 4 characters")
@@ -33,77 +39,60 @@ const SignUp = () => {
     city: yup.string().required("City field is required !"),
     state: yup.string().required("State field is required !"),
     phone: yup.string().required("Phone Number is required !"),
-    // jobTitle: yup
-    //   .array()
-    //   .max(3, "max 3 Title required")
-    //   .min(1, "Please select at least one job title")
-    //   .required("Job title is required"),
-    // // jobSkill: yup
-    // //   .array()
-    // //   .max(5, "max 5 tags")
-    // //   .min(1, "Please select at least one job Skills")
-    // //   .required("Job Skill is required"),
-    // experience: yup.string().required("Experience is required"),
-    // resumeTitle: yup.string().required("resume title is required"),
-    // resume: yup
-    //   .mixed()
-    //   .required("resume is required")
-    //   .test("fileSize", "File should be less than 2 MB!!!", (value) => {
-    //     return value && value[0].size <= 2_000_000;
-    //   })
-    //   .test(
-    //     "type",
-    //     "Only the following formats are accepted: .pdf, .doc, .docx",
-    //     (value) => {
-    //       return (
-    //         value &&
-    //         (value[0].type === "application/pdf" ||
-    //           value[0].type === "application/msword" ||
-    //           value[0].type ===
-    //             "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
-    //       );
-    //     }
-    //   ),
+    password: yup.string().required("Password is must be required !"),
   });
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    setValue,
-    getValues,
-    reset,
-    formState: { errors, isDirty },
-  } = useForm({
-    resolver: yupResolver(SignupSchema),
-    defaultValues: {
+  const formik = useFormik({
+    initialValues: {
       name: "",
       email: "",
+      password: "",
       city: "",
       state: "",
       phone: "",
-      jobTitle: [],
-      resumeTitle: "",
-      experience: "",
-      resume: null,
+    },
+    validationSchema: SignupNewSchema,
+    onSubmit: (values) => {
+      const { city, email, name, password, phone, state } = values;
+      if (!isPossiblePhoneNumber(phone) || !isValidPhoneNumber(phone)) {
+        toast.remove();
+        toast.error("phone is invalid");
+        return true;
+      }
+      const response = dispatch(
+        handleSignUp({
+          name,
+          email,
+          password,
+          phone,
+          city,
+          state,
+          signal: AbortControllerRef,
+        })
+      );
+      if (response) {
+        response.then((res) => {
+          if (res?.payload?.success === true) {
+            toast.success("sign up successfully", { duration: 2000 });
+            navigate("/my-account");
+          }
+        });
+      }
     },
   });
+  const { getFieldProps, handleSubmit, setFieldValue, values, errors } = formik;
 
-  const onSubmit = (data) => {
-    const { phone } = data;
-    if (!isPossiblePhoneNumber(phone) || !isValidPhoneNumber(phone)) {
-      toast.remove();
-      toast.error("phone is invalid");
-      return;
+  useEffect(() => {
+    if (user !== null) {
+      navigate("/");
+      toast.error("Already logged in");
     }
-    if (Object.entries(errors).length === 0) {
-      setStep(1);
-    }
-  };
-
+    return () => {
+      abortApiCall();
+    };
+  }, []);
   return (
     <>
-      <Helmet title="SignUp | Football-Recruitment" />
       <div
         style={{
           backgroundImage: `url(${banner})`,
@@ -117,20 +106,14 @@ const SignUp = () => {
           <div className="bg-white md:w-1/2 xl:w-2/5 w-[85%] mt-28 mx-auto text-center rounded-3xl mb-10 shadow-[11px_13px_0px_4px_rgba(255,255,255,0.14)] md:p-6 p-2">
             <div className="md:space-y-5 space-y-3">
               <p className="text-[#123763] md:text-3xl text-lg font-bold">
-                Apply Here
+                Sign Up
               </p>
               <div className="">
                 <hr className="line" />
               </div>
-              {step === 1 ? (
-                <StepOne
-                  setStep={setStep}
-                  values={getValues()}
-                  setValue={setValue}
-                />
-              ) : (
-                <form
-                  onSubmit={handleSubmit(onSubmit)}
+              <FormikProvider value={formik}>
+                <Form
+                  onSubmit={handleSubmit}
                   autoComplete="off"
                   className="space-y-4"
                 >
@@ -143,9 +126,9 @@ const SignUp = () => {
                       name="name"
                       className="input_field"
                       placeholder="Enter your name"
-                      {...register("name")}
+                      {...getFieldProps("name")}
                     />
-                    <span className="error">{errors?.name?.message}</span>{" "}
+                    <ErrorMessage name="name" component={TextError} />
                   </div>
                   <div className="text-left">
                     <label htmlFor="email" className="label_text">
@@ -156,9 +139,9 @@ const SignUp = () => {
                       name="email"
                       className="input_field"
                       placeholder="Enter your email"
-                      {...register("email")}
+                      {...getFieldProps("email")}
                     />
-                    <span className="error">{errors?.email?.message}</span>{" "}
+                    <ErrorMessage name="email" component={TextError} />
                   </div>
                   <div className="text-left">
                     <label htmlFor="phone" className="label_text">
@@ -172,16 +155,16 @@ const SignUp = () => {
                         name: "phone",
                       }}
                       onChange={(value) =>
-                        setValue("phone", "+".concat(value).trim())
+                        setFieldValue("phone", "+".concat(value).trim())
                       }
-                      value={getValues().phone}
+                      value={values.phone}
                       inputStyle={{
                         width: "100%",
                         padding: "1.2rem 0 1.2rem 3rem",
                       }}
                       // disabled={loading}
                     />
-                    <span className="error">{errors?.phone?.message}</span>{" "}
+                    <ErrorMessage name="phone" component={TextError} />
                   </div>
                   <div className="flex lg:flex-row flex-col w-full gap-3">
                     <div className="text-left w-full lg:w-1/2">
@@ -193,9 +176,9 @@ const SignUp = () => {
                         name="state"
                         className="input_field"
                         placeholder="Enter your state"
-                        {...register("state")}
+                        {...getFieldProps("state")}
                       />
-                      <span className="error">{errors?.state?.message}</span>{" "}
+                      <ErrorMessage name="state" component={TextError} />
                     </div>
                     <div className="text-left w-full lg:w-1/2">
                       <label htmlFor="email" className="label_text">
@@ -206,19 +189,45 @@ const SignUp = () => {
                         name="city"
                         className="input_field"
                         placeholder="Enter your city"
-                        {...register("city")}
+                        {...getFieldProps("city")}
                       />
-                      <span className="error">{errors?.city?.message}</span>{" "}
+                      <ErrorMessage name="city" component={TextError} />
                     </div>
+                  </div>
+                  <div className="text-left relative md:space-y-2">
+                    <label className="label_text" htmlFor="Password">
+                      Password
+                    </label>
+                    <input
+                      className="input_field"
+                      id="username"
+                      type={showPassword ? "text" : "password"}
+                      name="password"
+                      placeholder="Enter your password"
+                      {...getFieldProps("password")}
+                    />
+                    {showPassword ? (
+                      <BsEyeFill
+                        onClick={() => setShowPassword(!showPassword)}
+                        role="button"
+                        className="absolute right-3 top-9 h-5 w-5 text-primary_color"
+                      />
+                    ) : (
+                      <BsEyeSlashFill
+                        onClick={() => setShowPassword(!showPassword)}
+                        role="button"
+                        className="absolute right-3 top-9 h-5 w-5 text-primary_color"
+                      />
+                    )}
+                    <ErrorMessage name="password" component={TextError} />
                   </div>
                   <button
                     type="submit"
                     className="blue_button mt-5"
-                    // disabled={loading}
+                    disabled={loading}
                     // onSubmit={handleSubmit}
                   >
-                    {/* {loading ? "Signing up..." : "Next"} */}
-                    Next
+                    {loading ? "Signing up..." : "Sign Up"}
                   </button>
                   <p>
                     Already have an account?{" "}
@@ -228,8 +237,8 @@ const SignUp = () => {
                       </span>
                     </Link>
                   </p>
-                </form>
-              )}
+                </Form>
+              </FormikProvider>
             </div>
           </div>
         </div>
@@ -238,7 +247,7 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default SignupNew;
 
 const TextError = styled.span`
   color: red !important;

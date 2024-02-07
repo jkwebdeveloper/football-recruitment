@@ -11,15 +11,17 @@ import { handleGetAppliedJobs } from "../redux/JobSlice";
 const MyAccount = () => {
   const [tabMenu, setTabMenu] = useState("Manage Acoount");
 
-  const { token } = useSelector((s) => s.root.auth);
+  const { token, user } = useSelector((s) => s.root.auth);
 
   const { AbortControllerRef } = useAbortApiCall();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(handleGetResume({ token, signal: AbortControllerRef }));
-    dispatch(handleGetAppliedJobs({ token }));
+    if (user !== null) {
+      dispatch(handleGetResume({ token, signal: AbortControllerRef }));
+      dispatch(handleGetAppliedJobs({ token }));
+    }
   }, []);
 
   return (

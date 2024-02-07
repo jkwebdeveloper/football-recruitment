@@ -20,6 +20,7 @@ import Services from "./pages/Services";
 import PrivateRoute from "./pages/PrivateRoute";
 import PageNotFound from "./pages/PageNotFound";
 import StepOne from "./components/stepForm/StepOne";
+import SignupNew from "./pages/SignupNew";
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         {/* SignUp Form */}
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/apply-now" element={<SignUp />} />
+        <Route path="/sign-up" element={<SignupNew />} />
         <Route path="/stepone" element={<StepOne />} />
         <Route path="/success" element={<SuccessFull />} />
         {/* <Route path="/faq" element={<FAQ />} /> */}
