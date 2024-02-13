@@ -19,17 +19,15 @@ import { handleRegisterUser } from "../../redux/AuthSlice";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "formik";
 
-const StepOne = ({ setStep, values, setValue }) => {
-  const [resume, setResume] = useState(null);
+const StepOne = ({ setStep, values, setValue, resume, setResume }) => {
   const [jobtitle, setJobTitle] = useState([]);
   const [jobTitleLoading, setJobTitleLoading] = useState(false);
+  // const [loadingBar, setLoadingBar] = useState(false)
   // const [jobSkills, setJobSkills] = useState([]);
 
   const { loading } = useSelector((state) => state.root.auth);
   const { singleJob } = useSelector((state) => state.root.job);
   const { resumeUploadLoading } = useSelector((state) => state.root.myaccount);
-
-  console.log(singleJob?.title);
 
   const dispatch = useDispatch();
 
@@ -41,7 +39,8 @@ const StepOne = ({ setStep, values, setValue }) => {
     const fetchJobTitles = async () => {
       try {
         const response = await axios.get(
-          "https://football-recruitment.onrender.com/api/job-title",
+          // "https://football-recruitment.onrender.com/api/job-title",
+          "https://admin.footballrecruitment.eu/api/job-title",
           // "http://192.168.29.200:5000/api/job-title",
           {
             headers: { "Content-Type": "application/json" },
@@ -96,18 +95,18 @@ const StepOne = ({ setStep, values, setValue }) => {
     resume: yup
       .mixed()
       .required("resume is required")
-      .test("fileSize", "File should be less than 2 MB!!!", (value) => {
-        return value && value[0].size <= 2_000_000;
+      .test("fileSize", "File should be less than 2 MB!!!", () => {
+        return resume && resume.size <= 2_000_000;
       })
       .test(
         "type",
         "Only the following formats are accepted: .pdf, .doc, .docx",
-        (value) => {
+        () => {
           return (
-            value &&
-            (value[0].type === "application/pdf" ||
-              value[0].type === "application/msword" ||
-              value[0].type ===
+            resume &&
+            (resume.type === "application/pdf" ||
+              resume.type === "application/msword" ||
+              resume.type ===
                 "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
           );
         }
@@ -119,6 +118,7 @@ const StepOne = ({ setStep, values, setValue }) => {
     handleSubmit,
     control,
     reset,
+    getValues,
     formState: { errors, isDirty },
   } = useForm({
     resolver: yupResolver(resumeSchema),
@@ -131,6 +131,7 @@ const StepOne = ({ setStep, values, setValue }) => {
   });
 
   const onSubmit = async (data) => {
+    console.log(data, "=======data=======");
     if (resumeUploadLoading) return;
     const { jobTitle, experience, resumeTitle } = data;
     setValue("jobTitle", jobTitle);
@@ -156,21 +157,27 @@ const StepOne = ({ setStep, values, setValue }) => {
     );
     if (response) {
       response.then((res) => {
-        console.log(res);
         if (res?.payload?.success) {
-          toast.success(res?.payload?.message, { duration: 2000 });
-          // console.log(res?.payload?.message);
-          navigate("/my-account");
+          toast.success(res?.payload?.message);
+          toast.success("Password sent to your registered email.");
+          setTimeout(() => {
+            navigate("/my-account");
+          }, 1000);
         }
       });
     }
   };
 
+  const handleOnBack = () => {
+    setStep(0);
+    setValue("jobTitle", getValues().jobTitle);
+    setValue("resumeTitle", getValues().resumeTitle);
+    setValue("experience", getValues().experience);
+  };
+
   useEffect(() => {
     return () => abortApiCall();
   }, []);
-
-  // console.log(getValues());
 
   return (
     <form
@@ -182,25 +189,25 @@ const StepOne = ({ setStep, values, setValue }) => {
         <label className="label_text" htmlFor="jobTitle">
           Job Title
         </label>
-
-        <Controller
-          name="jobTitle"
-          control={control}
-          render={({
-            field: { onChange, onBlur, value, name, ref },
-            fieldState: { invalid, isTouched, isDirty, error },
-            formState,
-          }) => (
-            <Select
-              isMulti
-              options={loading ? [] : jobtitle} // Use the dynamic jobtitles array
-              className="basic-multi-select"
-              name={name}
-              onChange={onChange}
-              onBlur={onBlur}
-            />
-          )}
-        />
+        {jobTitleLoading ? (
+          <div>Loading../</div>
+        ) : (
+          <Controller
+            name="jobTitle"
+            control={control}
+            render={({ field: { onChange, onBlur, value, name, ref } }) => (
+              <Select
+                isMulti
+                options={loading ? [] : jobtitle}
+                className="basic-multi-select"
+                name={name}
+                onChange={onChange}
+                onBlur={onBlur}
+                defaultValue={jobTitle}
+              />
+            )}
+          />
+        )}
         <span className="error">{errors?.jobTitle?.message}</span>
       </div>
       <div className="text-left md:space-y-2">
@@ -258,7 +265,7 @@ const StepOne = ({ setStep, values, setValue }) => {
               accept=".pdf, .doc, .docx, .odt"
             />
             <label
-              for="actual-btn"
+              htmlFor="actual-btn"
               className=" bg-[#C9E5F8] focus:outline-none cursor-pointer  text-primary_color font-medium active:scale-90 transition text-sm md:px-10 px-5 md:py-3 py-2"
             >
               Browse file
@@ -276,7 +283,7 @@ const StepOne = ({ setStep, values, setValue }) => {
           type="button"
           className="blue_button mt-5"
           disabled={loading}
-          onClick={() => setStep(0)}
+          onClick={() => handleOnBack()}
         >
           Back
         </button>

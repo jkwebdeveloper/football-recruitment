@@ -10,7 +10,7 @@ const YoutubeVideo = () => {
           height="315"
           src="https://www.youtube.com/embed/PL5bf_c4P7k"
           frameborder="0"
-          allowfullscreen
+          allowFullScreen
           className="w-full lg:h-[600px]"
         ></iframe>
       </div>

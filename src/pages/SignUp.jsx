@@ -19,7 +19,7 @@ import StepOne from "../components/stepForm/StepOne";
 
 const SignUp = () => {
   const [step, setStep] = useState(0);
-
+  const [resume, setResume] = useState(null);
   const navigate = useNavigate();
   // const history = useHistory();
 
@@ -82,6 +82,8 @@ const SignUp = () => {
       city: "",
       state: "",
       phone: "",
+      jobId: "",
+      title: "",
       jobTitle: [],
       resumeTitle: "",
       experience: "",
@@ -127,6 +129,8 @@ const SignUp = () => {
                   setStep={setStep}
                   values={getValues()}
                   setValue={setValue}
+                  resume={resume}
+                  setResume={setResume}
                 />
               ) : (
                 <form
