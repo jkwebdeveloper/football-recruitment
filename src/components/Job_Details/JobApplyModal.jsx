@@ -160,7 +160,7 @@ const JobApplyModal = ({ visible, onClose }) => {
                   resume?.map((res) => (
                     <option
                       key={res?._id}
-                      value={BaseUrl.concat(res?.resumePdf)}
+                      value={res?.resumePdf}
                     >
                       {res?.resumeTitle}
                     </option>

@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export default axios.defaults.baseURL = "https://football-recruitment.onrender.com/"
-// export default axios.defaults.baseURL = "https://admin.footballrecruitment.eu/";
+// export default axios.defaults.baseURL = "https://football-recruitment.onrender.com/"
+export default axios.defaults.baseURL = "https://admin.footballrecruitment.eu/";
 // export default axios.defaults.baseURL = "http://192.168.29.200:5000/api/";
 
 
