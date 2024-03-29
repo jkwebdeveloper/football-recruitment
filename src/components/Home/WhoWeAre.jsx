@@ -21,6 +21,8 @@ const WhoWeAre = () => {
         setLoading(false);
       });
   };
+  console.log(`https://admin.footballrecruitment.eu/${description?.image}`);
+  console.log(description?.page);
   useEffect(() => {
     handleGetwho();
   }, []);
@@ -29,11 +31,9 @@ const WhoWeAre = () => {
       <div className="flex justify-center">
         <div className="bg-[#D6EFFF]  w-[200px] h-[255px] lg:w-[342px] -rotate-12 lg:h-[455px] rounded-3xl">
           <img
-            src={"https://admin.footballrecruitment.eu".concat(
-              description?.page?.image
-            )}
+            src={`https://admin.footballrecruitment.eu/${description?.image}`}
             alt="image"
-            className=" lg:w-[342px]  lg:h-[455px] rotate-12  w-[200px] h-[255px] "
+            className=" lg:w-[342px]  lg:h-[455px] rotate-12 object-cover rounded-2xl  w-[250px] h-[255px] "
           />
         </div>
       </div>

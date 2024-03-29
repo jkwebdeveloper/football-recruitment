@@ -14,7 +14,7 @@ const Description = () => {
         },
       })
       .then((res) => {
-        setDescription(res.data.page);
+        setDescription(res?.data?.page);
         setLoading(false);
       })
       .catch((err) => {
@@ -29,6 +29,9 @@ const Description = () => {
       <div className="flex justify-center">
         <img
           src={Logo}
+          // src={"https://admin.footballrecruitment.eu".concat(
+          //     description?.page?.image
+          //   )}
           alt=""
           className="text-center lg:w-[342px]  lg:h-[455px]"
         />

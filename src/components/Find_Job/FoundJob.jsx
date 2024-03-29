@@ -32,7 +32,6 @@ const FoundJob = () => {
           limit: 20,
         })
       );
-
       if (response.payload) {
         setTotalJobs(response.payload.totalPages);
         setTotalJobCount(response.payload.totalJobCount);
@@ -40,13 +39,13 @@ const FoundJob = () => {
     };
 
     fetchJobs();
-  }, [currentPage, dispatch]);
-
+  }, [currentPage, totalJobCount, dispatch]);
+  console.log(totalJobCount, "===========job");
   return (
     <div className="md:w-4/5 w-full mx-auto space-y-5">
       <div className="flex justify-between items-center">
         <div className="xl:text-2xl text-sm text-primary_color font-medium">
-          {totalJobCount} JOBS FOUND
+          {jobs?.length} JOBS FOUND
         </div>
         <div className="flex justify-between lg:gap-10 gap-3">
           <div className="flex items-center lg:gap-3 gap-0">
@@ -92,7 +91,7 @@ const FoundJob = () => {
                   }}
                   key={job?._id}
                 >
-                  <div className="border border-[#D6DDEB] xl:space-y-4 cursor-pointer h-60 space-y-4 p-3 xl:p-4">
+                  <div className="border border-[#D6DDEB] xl:space-y-4 cursor-pointer h-64 space-y-4 p-3 xl:p-4">
                     <div className="flex items-center justify-between">
                       <div className="flex xl:gap-4 gap-2 items-center justify-between">
                         <img
