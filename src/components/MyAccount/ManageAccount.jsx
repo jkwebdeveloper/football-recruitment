@@ -180,7 +180,7 @@ const ManageAccount = () => {
           type="text"
           name="state"
           className="input_field"
-          placeholder="Enter your state"
+          placeholder="Enter your country"
           {...register("country")}
         />
         <span className="error"> {errors?.country?.message}</span>

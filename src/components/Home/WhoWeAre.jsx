@@ -1,14 +1,38 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const WhoWeAre = () => {
+  const [description, setDescription] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  const handleGetwho = () => {
+    axios
+      .get("https://admin.footballrecruitment.eu/api/whoWeAre", {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((res) => {
+        setDescription(res?.data?.page);
+        setLoading(false);
+      })
+      .catch((err) => {
+        setLoading(false);
+      });
+  };
+  useEffect(() => {
+    handleGetwho();
+  }, []);
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2  justify-center gap-7 xl:gap-0  lg:px-20 px-8 ">
       <div className="flex justify-center">
         <div className="bg-[#D6EFFF]  w-[200px] h-[255px] lg:w-[342px] -rotate-12 lg:h-[455px] rounded-3xl">
           <img
-            src={require("../../assets/who-we.png")}
-            alt=""
+            src={"https://admin.footballrecruitment.eu".concat(
+              description?.page?.image
+            )}
+            alt="image"
             className=" lg:w-[342px]  lg:h-[455px] rotate-12  w-[200px] h-[255px] "
           />
         </div>
